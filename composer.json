@@ -1,0 +1,21 @@
+{
+    "name": "42geeks/mist",
+    "description": "Framework for building wp themes",
+    "type": "library",
+    "license": "GPLv3+",
+    "authors": [
+        {
+            "name": "Sebo",
+            "email": "sebo@42geeks.gg"
+        }
+    ],
+    "minimum-stability": "dev",
+	"require": {
+        "johnbillion/extended-cpts": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mist\\": "./src"
+        }
+    }
+}
