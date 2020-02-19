@@ -1,0 +1,26 @@
+{
+	"post-types": [
+		{
+			"event": {
+				"singular": "event",
+				"plural": "events"
+			}
+		}
+	],
+	"theme-support": [
+		{
+			"custom-logo": {
+				"flex-width": true,
+				"flex-height": true
+			}
+		},
+		"title-tag",
+		"align-wide"
+	],
+	"nav-menus": [
+		"main",
+		"top",
+		"footer"
+	],
+	"text-domain": "my-theme"
+}

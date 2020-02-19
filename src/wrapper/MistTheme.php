@@ -10,6 +10,8 @@ declare(strict_types=1);
  */
 namespace mist\wrapper;
 
+use mist\MistWrapper;
+
 /**
  * MistTheme - Wrap wp theme related functions and hooks like
  * after_setup_theme or upload_mimes
@@ -19,13 +21,39 @@ namespace mist\wrapper;
  * @author   Sebo <sebo@42geeks.gg>
  * @license  GPLv3 https://opensource.org/licenses/gpl-3.0.php
  */
-class MistTheme
+class MistTheme extends MistWrapper
 {
 	/**
-	 * 
+	 * Is child theme
+	 */
+	private static $isChildTheme = false;
+
+	/**
+	 * Theme URI
+	 */
+	private static $themeUri = '';
+
+	/**
+	 * Theme Path
+	 */
+	private static $themePath = '';
+
+	/**
+	 * Holds all relevant theme data
 	 */
 	public function __construct()
 	{
+		self::$isChildTheme = is_child_theme();
+
+		// load theme paths only once
+		if (true === self::$isChildTheme) {
+			self::$themeUri = get_stylesheet_directory_uri();
+			self::$themePath = get_stylesheet_directory();
+		} else {
+			self::$themeUri = get_template_directory_uri();
+			self::$themePath = get_template_directory();
+		}
+
 		// TODO: 
 		// add hooks
 		// add filter

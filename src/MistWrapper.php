@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace mist;
 
 use MistBase;
+use mist\wrapper\MistTheme;
 
 /**
  * MistWrapper - initialize Wrapper classes
@@ -25,15 +26,21 @@ class MistWrapper
 	/**
 	 * App reference
 	 */
-	private $app = null;
+	protected $app = null;
+
+	/**
+	 * MistTheme
+	 */
+	private $theme = null;
 
 	/**
 	 * Create a new Mist Wrapper
 	 * 
-	 * @param MistBase $mb - the base app as dependency
+	 * @param \mist\MistBase $mb - the base app as dependency
 	 */
-	public function __construct(MistBase $mb)
+	public function __construct(\mist\MistBase $mb)
 	{
 		$this->app = $mb;
+		$this->theme = new MistTheme();
 	}
 }

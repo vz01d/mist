@@ -21,12 +21,13 @@ if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
 	include_once dirname(__FILE__) . '/vendor/autoload.php';
 }
 
-if (class_exists('Mist\\MistBase')) {
+if (class_exists('mist\\MistBase')) {
 	// TODO: figure out a better way to keep compliant
 	// PSR1.Files.SideEffects.FoundWithSymbols
 	define('MIST_VERSION', '0.1');
 	define('MIST_DEV', true);
 
 	// run theme
-	$app = mist\MistBase::app();
+	$mist = mist\MistBase::app();
+	$mist->run();
 }

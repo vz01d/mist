@@ -37,14 +37,28 @@ final class MistBase
 	public static function app(): MistBase
 	{
 		if (null === self::$instance) {
-			$instance = new MistBase();
+			self::$instance = new MistBase();
 		}
 		
-		return $instance;
+		return self::$instance;
+	}
+
+	/**
+	 * Run Mist
+	 * 
+	 * @return void
+	 */
+	public function run(): void
+	{	
+		// load Mist
+		new MistWrapper(self::$instance);
+		
+		// load Mist config (theme data required hence wrapper first)
+
 	}
 
 	/**
 	 * You do not take that candle!
 	 */
-	private function __construct(){}
+	private function __construct() {}
 }
