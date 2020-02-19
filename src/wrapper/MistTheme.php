@@ -41,7 +41,7 @@ class MistTheme extends MistWrapper
 	/**
 	 * Theme configuration
 	 */
-	private static $themeConfig = null;
+	private static $config = null;
 
 	/**
 	 * Holds all relevant theme data
@@ -69,8 +69,31 @@ class MistTheme extends MistWrapper
 	 */
 	public function setConfig(object $config): void
 	{
-		// TODO: validate config !!!
+		// check if config is empty at this point
+		$isEmpty = 1 > count(get_object_vars($config));
+		if (true === $isEmpty) {
+			// load default config instead
+			$this->setDefaultConfig();	
+		}
+
 		self::$config = $config;
+	}
+
+	/**
+	 * Set the default mist theme config
+	 * 
+	 * @return void
+	 */
+	private function setDefaultConfig(): void
+	{
+		$file = dirname(__FILE__) . '/../mist.config.default.json';
+		if (true !== file_exists($file)) {
+			throw new \Exception('mist default config file missing. Run composer update to get the latest version.');
+		}
+
+		$conf = file_get_contents($file);
+		$conf = (object)json_decode($conf, true);
+		$this->setConfig($conf);
 	}
 
 	/**
