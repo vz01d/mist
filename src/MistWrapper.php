@@ -31,7 +31,7 @@ class MistWrapper
 	/**
 	 * MistTheme
 	 */
-	private $theme = null;
+	private static $theme = null;
 
 	/**
 	 * Create a new Mist Wrapper
@@ -41,6 +41,16 @@ class MistWrapper
 	public function __construct(\mist\MistBase $mb)
 	{
 		$this->app = $mb;
-		$this->theme = new MistTheme();
+		self::$theme = new MistTheme();
+	}
+
+	/**
+	 * Access theme instance
+	 * 
+	 * @return \mist\wrapper\MistTheme
+	 */
+	public function theme(): \mist\wrapper\MistTheme
+	{
+		return self::$theme;
 	}
 }

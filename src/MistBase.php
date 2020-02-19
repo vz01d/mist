@@ -25,6 +25,11 @@ namespace mist;
 final class MistBase
 {
 	/**
+	 * Name of the config file
+	 */
+	const CONFIG_FILE_NAME = 'mist.config.json';
+
+	/**
 	 * Singleton
 	 */
 	private static $instance = null;
@@ -51,10 +56,33 @@ final class MistBase
 	public function run(): void
 	{	
 		// load Mist
-		new MistWrapper(self::$instance);
+		$wrapper = new MistWrapper(self::$instance);
 		
 		// load Mist config (theme data required hence wrapper first)
+		self::config($wrapper);
+	}
 
+	/**
+	 * Load mist configuration file from theme
+	 * root. If no file exists the default
+	 * will be loaded
+	 * 
+	 * @param MistWrapper $wrapper - the wrapper instance to access
+	 * theme data
+	 * 
+	 * @return void
+	 */
+	private static function config(MistWrapper $wrapper): void
+	{
+		$rootPath = $wrapper->theme()->rootPath();
+		$file = $rootPath . '/' . self::CONFIG_FILE_NAME;
+
+		// check if config file has been created by fellow dev
+		if (true === file_exists($file)) {
+			$conf = file_get_contents($file);
+			$conf = (object)json_decode($conf, true);
+			$wrapper->theme()->setConfig($conf);
+		}
 	}
 
 	/**

@@ -39,6 +39,11 @@ class MistTheme extends MistWrapper
 	private static $themePath = '';
 
 	/**
+	 * Theme configuration
+	 */
+	private static $themeConfig = null;
+
+	/**
 	 * Holds all relevant theme data
 	 */
 	public function __construct()
@@ -53,22 +58,48 @@ class MistTheme extends MistWrapper
 			self::$themeUri = get_template_directory_uri();
 			self::$themePath = get_template_directory();
 		}
+	}
 
-		// TODO: 
-		// add hooks
-		// add filter
-		/**
-		 * How it should work:
-		 * the developer is using the class can simply call
-		 * MistTheme::setSupport([
-		 * 	'align-wide',
-		 * 	'title-tag',
-		 * 	'custom-logo' => [
-		 * 		'flex-width' => true,
-		 * 		'flex-height' => true,
-		 *  ]
-		 * ]);
-		 * MistTheme::setThumbnailSize($w, $h)
-		 */
+	/**
+	 * Set the theme configuration
+	 * 
+	 * @param object $config - the configuration object
+	 * 
+	 * @return void
+	 */
+	public function setConfig(object $config): void
+	{
+		// TODO: validate config !!!
+		self::$config = $config;
+	}
+
+	/**
+	 * Theme root path
+	 * 
+	 * @return string - the theme root path
+	 */
+	public function rootPath(): string
+	{
+		return self::$themePath;
+	}
+
+	/**
+	 * Theme root uri
+	 * 
+	 * @return string - the theme root uri
+	 */
+	public function rootUri(): string
+	{
+		return self::$themeUri;
+	}
+
+	/**
+	 * Is a child theme?
+	 * 
+	 * @return bool - wether is a child theme or not
+	 */
+	public function isChildTheme(): bool
+	{
+		return self::$isChildTheme;
 	}
 }
