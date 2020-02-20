@@ -18,3 +18,13 @@ Mist also brings you more object oriented approaches to work with Post objects, 
 ## Configuration over Convention
 
 The framework leaves choices to you everywhere not getting in your way with some nasty css, js or hooks you can't get rid of. You can use a configuration file mist.config.json which you can simply create in your theme root to get basic stuff like post types, theme support, navigation and alike set and usable.
+
+## WIP
+
+- [x] implement config loading
+- [ ] load post types (multiple) with their respective args handed over to johnbillion/extended-cpts
+- [ ] load theme support
+- [ ] load nav menus
+- [ ] allow all configuration items to be created via code (sometimes config just does not fit)
+- [ ] add customizer settings via config
+- [ ] add form creator (TBD)
