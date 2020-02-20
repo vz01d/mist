@@ -1,13 +1,14 @@
 {
-	"post-types": [
+	"postTypes": [
+		"team",
 		{
-			"event": {
-				"singular": "event",
-				"plural": "events"
+			"offer": {
+				"singular": "offer",
+				"plural": "offers"
 			}
 		}
 	],
-	"theme-support": [
+	"themeSupport": [
 		{
 			"custom-logo": {
 				"flex-width": true,
@@ -17,10 +18,10 @@
 		"title-tag",
 		"align-wide"
 	],
-	"nav-menus": [
+	"navMenus": [
 		"main",
 		"top",
 		"footer"
 	],
-	"text-domain": "my-theme"
+	"textDomain": "my-theme"
 }

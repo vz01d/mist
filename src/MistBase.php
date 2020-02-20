@@ -22,7 +22,7 @@ namespace mist;
  * @author   Sebo <sebo@42geeks.gg>
  * @license  GPLv3 https://opensource.org/licenses/gpl-3.0.php
  */
-final class MistBase
+final class MistBase extends MistWrapper
 {
 	/**
 	 * Singleton
@@ -49,12 +49,12 @@ final class MistBase
 	 * @return void
 	 */
 	public function run(): void
-	{	
+	{
 		// load Mist
-		$wrapper = new MistWrapper(self::$instance);
-		
+		new MistWrapper(self::$instance);
+
 		// load Mist config (theme data required hence wrapper first)
-		self::config($wrapper);
+		add_action('init', [$this, 'config']);
 	}
 
 	/**
@@ -62,14 +62,11 @@ final class MistBase
 	 * root. If no file exists the default
 	 * will be loaded
 	 * 
-	 * @param MistWrapper $wrapper - the wrapper instance to access
-	 * theme data
-	 * 
 	 * @return void
 	 */
-	private static function config(MistWrapper $wrapper): void
+	public function config(): void
 	{
-		$file = $wrapper->theme()->rootPath() . '/mist.config.json';
+		$file = $this->theme()->rootPath() . '/mist.config.json';
 
 		// empty object
 		$conf = (object)null;
@@ -81,7 +78,8 @@ final class MistBase
 		}
 
 		// set the config
-		$wrapper->theme()->setConfig($conf);
+		$this->theme()->setConfig($conf);
+		$this->initTheme();
 	}
 
 	/**

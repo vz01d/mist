@@ -1,5 +1,5 @@
 {
-	"post-types": [
+	"postTypes": [
 		{
 			"event": {
 				"singular": "event",
@@ -7,7 +7,7 @@
 			}
 		}
 	],
-	"theme-support": [
+	"themeSupport": [
 		{
 			"custom-logo": {
 				"flex-width": true,
@@ -17,10 +17,10 @@
 		"title-tag",
 		"align-wide"
 	],
-	"nav-menus": [
+	"navMenus": [
 		"main",
 		"top",
 		"footer"
 	],
-	"text-domain": "mist-framework"
+	"textDomain": "mist-framework"
 }

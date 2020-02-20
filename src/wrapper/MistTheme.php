@@ -61,6 +61,17 @@ class MistTheme extends MistWrapper
 	}
 
 	/**
+	 * Init the theme
+	 * 
+	 * @return void
+	 */
+	public function init(): void
+	{
+		$postTypes = apply_filters('mist_post_types', self::$config->postTypes);
+		$this->post()->init($postTypes);
+	}
+
+	/**
 	 * Set the theme configuration
 	 * 
 	 * @param object $config - the configuration object
@@ -70,13 +81,14 @@ class MistTheme extends MistWrapper
 	public function setConfig(object $config): void
 	{
 		// check if config is empty at this point
+		// TODO: empty config is enuff to crash server process
 		$isEmpty = 1 > count(get_object_vars($config));
 		if (true === $isEmpty) {
 			// load default config instead
 			$this->setDefaultConfig();	
+		} else {
+			self::$config = $config;
 		}
-
-		self::$config = $config;
 	}
 
 	/**
@@ -93,7 +105,7 @@ class MistTheme extends MistWrapper
 
 		$conf = file_get_contents($file);
 		$conf = (object)json_decode($conf, true);
-		$this->setConfig($conf);
+		self::$config = $conf;
 	}
 
 	/**

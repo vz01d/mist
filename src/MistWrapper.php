@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace mist;
 
 use MistBase;
-use mist\wrapper\MistTheme;
+use mist\wrapper;
 
 /**
  * MistWrapper - initialize Wrapper classes
@@ -32,6 +32,11 @@ class MistWrapper
 	 * MistTheme
 	 */
 	private static $theme = null;
+	
+	/**
+	 * MistPost
+	 */
+	private static $post = null;
 
 	/**
 	 * Create a new Mist Wrapper
@@ -40,8 +45,20 @@ class MistWrapper
 	 */
 	public function __construct(\mist\MistBase $mb)
 	{
+		self::$theme = new wrapper\MistTheme();
 		$this->app = $mb;
-		self::$theme = new MistTheme();
+	}
+
+	/**
+	 * Run the WP lifecycle functions
+	 * init hook
+	 * 
+	 * @return void
+	 */
+	protected function initTheme(): void
+	{
+		self::$post = new wrapper\MistPost();
+		self::$theme->init();
 	}
 
 	/**
@@ -49,8 +66,18 @@ class MistWrapper
 	 * 
 	 * @return \mist\wrapper\MistTheme
 	 */
-	public function theme(): \mist\wrapper\MistTheme
+	protected function theme(): \mist\wrapper\MistTheme
 	{
 		return self::$theme;
+	}
+
+	/**
+	 * Access post instance
+	 * 
+	 * @return \mist\wrapper\MistPost
+	 */
+	protected function post(): \mist\wrapper\MistPost
+	{
+		return self::$post;
 	}
 }
