@@ -1,10 +1,12 @@
 {
 	"postTypes": [
-		"team",
+		{
+			"team": []
+		},
 		{
 			"offer": {
-				"singular": "offer",
-				"plural": "offers"
+				"singular": "Banana",
+				"plural": "Bananananas"
 			}
 		}
 	],

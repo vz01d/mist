@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace mist\wrapper;
 
 use mist\MistWrapper;
+use mist\MistConfig;
 
 /**
  * MistTheme - Wrap wp theme related functions and hooks like
@@ -62,55 +63,29 @@ class MistTheme extends MistWrapper
 
 	/**
 	 * Init the theme
-	 * 
+	 *
 	 * @return void
 	 */
 	public function init(): void
 	{
-		$postTypes = apply_filters('mist_post_types', self::$config->postTypes);
+		// developers need to use MistPostType to add their post types using code/filter
+		$postTypes = apply_filters('mist_post_types', self::$config->registeredPosttypes());
 		$this->post()->init($postTypes);
 	}
 
 	/**
-	 * Set the theme configuration
-	 * 
-	 * @param object $config - the configuration object
-	 * 
+	 * Initialize the theme configuration
+	 *
 	 * @return void
 	 */
-	public function setConfig(object $config): void
+	public function initConfig(): void
 	{
-		// check if config is empty at this point
-		// TODO: empty config is enuff to crash server process
-		$isEmpty = 1 > count(get_object_vars($config));
-		if (true === $isEmpty) {
-			// load default config instead
-			$this->setDefaultConfig();	
-		} else {
-			self::$config = $config;
-		}
-	}
-
-	/**
-	 * Set the default mist theme config
-	 * 
-	 * @return void
-	 */
-	private function setDefaultConfig(): void
-	{
-		$file = dirname(__FILE__) . '/../mist.config.default.json';
-		if (true !== file_exists($file)) {
-			throw new \Exception('mist default config file missing. Run composer update to get the latest version.');
-		}
-
-		$conf = file_get_contents($file);
-		$conf = (object)json_decode($conf, true);
-		self::$config = $conf;
+		self::$config = new MistConfig();
 	}
 
 	/**
 	 * Theme root path
-	 * 
+	 *
 	 * @return string - the theme root path
 	 */
 	public function rootPath(): string
@@ -120,7 +95,7 @@ class MistTheme extends MistWrapper
 
 	/**
 	 * Theme root uri
-	 * 
+	 *
 	 * @return string - the theme root uri
 	 */
 	public function rootUri(): string
@@ -130,7 +105,7 @@ class MistTheme extends MistWrapper
 
 	/**
 	 * Is a child theme?
-	 * 
+	 *
 	 * @return bool - wether is a child theme or not
 	 */
 	public function isChildTheme(): bool

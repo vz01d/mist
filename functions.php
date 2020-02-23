@@ -16,13 +16,13 @@ if (! defined('WPINC')) {
 	die('You do not take that candle!');
 }
 
-// composer psr-4 autoload
-if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
+// psr-4
+try {
 	include_once dirname(__FILE__) . '/vendor/autoload.php';
-}
 
-if (class_exists('mist\\MistBase')) {
 	// run theme
 	$mist = mist\MistBase::app();
-	$mist->run();
+	$mist->run();	
+} catch (\Exception $e) {
+	throw new \Exception($e->getMessage());
 }

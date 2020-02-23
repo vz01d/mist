@@ -40,7 +40,7 @@ class MistWrapper
 
 	/**
 	 * Create a new Mist Wrapper
-	 * 
+	 *
 	 * @param \mist\MistBase $mb - the base app as dependency
 	 */
 	public function __construct(\mist\MistBase $mb)
@@ -52,7 +52,7 @@ class MistWrapper
 	/**
 	 * Run the WP lifecycle functions
 	 * init hook
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function initTheme(): void
@@ -63,7 +63,7 @@ class MistWrapper
 
 	/**
 	 * Access theme instance
-	 * 
+	 *
 	 * @return \mist\wrapper\MistTheme
 	 */
 	protected function theme(): \mist\wrapper\MistTheme
@@ -73,7 +73,7 @@ class MistWrapper
 
 	/**
 	 * Access post instance
-	 * 
+	 *
 	 * @return \mist\wrapper\MistPost
 	 */
 	protected function post(): \mist\wrapper\MistPost

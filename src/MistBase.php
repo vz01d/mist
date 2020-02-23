@@ -45,7 +45,7 @@ final class MistBase extends MistWrapper
 
 	/**
 	 * Run Mist
-	 * 
+	 *
 	 * @return void
 	 */
 	public function run(): void
@@ -61,24 +61,13 @@ final class MistBase extends MistWrapper
 	 * Load mist configuration file from theme
 	 * root. If no file exists the default
 	 * will be loaded
-	 * 
+	 *
 	 * @return void
 	 */
 	public function config(): void
 	{
-		$file = $this->theme()->rootPath() . '/mist.config.json';
-
-		// empty object
-		$conf = (object)null;
-
-		// check if config file has been created by fellow dev
-		if (true === file_exists($file)) {
-			$conf = file_get_contents($file);
-			$conf = (object)json_decode($conf, true);
-		}
-
 		// set the config
-		$this->theme()->setConfig($conf);
+		$this->theme()->initConfig();
 		$this->initTheme();
 	}
 

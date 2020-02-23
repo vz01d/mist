@@ -27,36 +27,16 @@ class MistPost extends MistWrapper
 	/**
 	 * WP init hook run on this object
 	 * 
+	 * @param array $postTypes - the postTypes to register
+	 * 
 	 * @return void
 	 */
 	public function init(array $postTypes): void
 	{
-		// TODO: figure this riddle out :>
-		/*
-		array(2) {
-		[0]=>
-		string(4) "team"
-		[1]=>
-		array(1) {
-			["offer"]=>
-			array(2) {
-			["singular"]=>
-			string(5) "offer"
-			["plural"]=>
-			string(6) "offers"
-			}
-		}
-		}*/
 		$count = count($postTypes);
-		if ($count > 0) {
-			if (isset($postTypes[0]) && is_array($postTypes[0]) || $count > 1) {
-				foreach($postTypes[0] as $postType => $args) {
-					register_extended_post_type($postType);
-				}
-			}
-
-			if (isset($postTypes[0]) && is_string($postTypes[0])) {
-				register_extended_post_type($postTypes[0]);
+		if ($count > 1) {
+			foreach($postTypes as $postType) {
+				$postType->register();
 			}
 		}
 	}
