@@ -26,6 +26,18 @@ class MistConfig extends \mist\wrapper\MistTheme
 	 * Post type object container
 	 */
 	private $postTypes = [];
+	
+	/**
+	 * Nav menu object container
+	 */
+	private $navMenus = [
+		'main'
+	];
+
+	/**
+	 * Theme text domain
+	 */
+	private $textDomain = 'mist';
 
 	/**
 	 * Make sure we don't read wrong keys
@@ -91,6 +103,18 @@ class MistConfig extends \mist\wrapper\MistTheme
 	}
 
 	/**
+	 * Set the text domain
+	 * 
+	 * @param array $values - the text domain value
+	 * 
+	 * @return void
+	 */
+	public function textDomain(array $values): void
+	{
+		$this->textDomain = isset($values[0]) ? $values[0] : $this->textDomain;
+	}
+
+	/**
 	 * Set post types registered
 	 * 
 	 * @param array $objects - the post types in config
@@ -109,6 +133,33 @@ class MistConfig extends \mist\wrapper\MistTheme
 			$pt->setup($object);
 			$this->postTypes[] = $pt;
 		}
+	}
+	
+	/**
+	 * Set nav Menus registered
+	 * 
+	 * @param array $objects - the post types in config
+	 * 
+	 * @return void 
+	 */
+	private function navMenus(array $objects = []): void
+	{
+		$this->navMenus = $objects;
+	}
+
+	/**
+	 * Run after theme setup wp hook
+	 * 
+	 * @return void
+	 */
+	public function afterSetup(): void
+	{
+		// apply navigation menus
+		$navMenus = apply_filters('mist_nav_menus', $this->navMenus);
+		register_nav_menus($navMenus);
+
+		// load text domain
+		load_theme_textdomain($this->textDomain, $this->theme()->rootPath() . '/languages');
 	}
 
 	/**

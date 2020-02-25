@@ -84,6 +84,16 @@ class MistTheme extends MistWrapper
 	}
 
 	/**
+	 * After theme setup
+	 *
+	 * @return void
+	 */
+	public function afterSetup(): void
+	{
+		self::$config->afterSetup();
+	}
+
+	/**
 	 * Theme root path
 	 *
 	 * @return string - the theme root path

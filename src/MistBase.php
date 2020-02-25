@@ -54,21 +54,11 @@ final class MistBase extends MistWrapper
 		new MistWrapper(self::$instance);
 
 		// load Mist config (theme data required hence wrapper first)
-		add_action('init', [$this, 'config']);
-	}
-
-	/**
-	 * Load mist configuration file from theme
-	 * root. If no file exists the default
-	 * will be loaded
-	 *
-	 * @return void
-	 */
-	public function config(): void
-	{
-		// set the config
 		$this->theme()->initConfig();
-		$this->initTheme();
+
+		// WP hooks
+		add_action('init', [$this, 'initTheme']);
+		add_action('after_setup_theme', [$this->theme(), 'afterSetup']);
 	}
 
 	/**

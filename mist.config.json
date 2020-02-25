@@ -23,7 +23,8 @@
 	"navMenus": [
 		"main",
 		"top",
-		"footer"
+		"footer",
+		"side"
 	],
-	"textDomain": "my-theme"
+	"textDomain": "mistdev"
 }

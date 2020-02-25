@@ -55,7 +55,7 @@ class MistWrapper
 	 *
 	 * @return void
 	 */
-	protected function initTheme(): void
+	public function initTheme(): void
 	{
 		self::$post = new wrapper\MistPost();
 		self::$theme->init();
