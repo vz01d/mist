@@ -33,11 +33,21 @@ class MistTheme extends MistWrapper
 	 * Theme URI
 	 */
 	private static $themeUri = '';
+	
+	/**
+	 * Asset URI
+	 */
+	private static $assetUri = '';
 
 	/**
 	 * Theme Path
 	 */
 	private static $themePath = '';
+
+	/**
+	 * Asset Path
+	 */
+	private static $assetPath = '';
 
 	/**
 	 * Theme configuration
@@ -59,6 +69,55 @@ class MistTheme extends MistWrapper
 			self::$themeUri = get_template_directory_uri();
 			self::$themePath = get_template_directory();
 		}
+
+		self::$assetUri = self::$themeUri . '/assets';
+		self::$assetPath = self::$themePath . '/assets';
+
+		add_action('wp_enqueue_scripts', [$this, 'enqueueAssets']);
+	}
+	
+	/**
+	 * Clean up default wp stuff
+	 *
+	 * @return void
+	 */
+	private function cleanUp(): void
+	{
+		// TODO: check for obsolete stuffs -> Roots -> Soil
+		remove_action('wp_head', 'wp_generator');
+		remove_action('wp_head', 'rsd_link');
+		remove_action('wp_head', 'wlwmanifest_link');
+		remove_action('wp_head', 'index_rel_link');
+		remove_action('wp_head', 'feed_links', 2);
+		remove_action('wp_head', 'feed_links_extra', 3);
+		remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
+		remove_action('wp_head', 'wp_shortlink_wp_head', 10);
+
+		// disable noise and throttle brutforce
+		add_filter('xmlrpc_enabled', '__return_false');
+	}
+
+	/**
+	 * Register and enqueue any required assets
+	 * 
+	 * @return void
+	 */
+	public function enqueueAssets(): void
+	{
+		wp_enqueue_style('theme', self::$themeUri . '/build/style.min.css', false);
+
+		// google fonts
+		wp_enqueue_style('webfonts', self::$assetUri . '/css/fontface.css', false);
+	}
+
+	/**
+	 * Dequeue any default assets we will never use
+	 * 
+	 * @return void
+	 */
+	private function dequeueAssets(): void
+	{
+		wp_deregister_script('jquery');
 	}
 
 	/**
@@ -68,6 +127,8 @@ class MistTheme extends MistWrapper
 	 */
 	public function init(): void
 	{
+		$this->cleanUp();
+
 		// developers need to use MistPostType to add their post types using code/filter
 		$postTypes = apply_filters('mist_post_types', self::$config->registeredPosttypes());
 		$this->post()->init($postTypes);

@@ -24,11 +24,12 @@ The framework leaves choices to you everywhere not getting in your way with some
 - [x] implement config loading
 - [x] load post types (multiple) with their respective args handed over to johnbillion/extended-cpts
 - [ ] load theme support
-- [ ] load nav menus
-- [ ] allow all configuration items to be created via code (sometimes config just does not fit)
+- [x] load nav menus
+- [x] allow all configuration items to be created via code (sometimes config just does not fit)
 - [ ] add customizer settings via config
 - [ ] add schema.org (all of them)
 - [ ] add form creator (TBD)
 - [ ] add support for meta fields (acf replacement)
 - [ ] extended-cpts should be optional (this is sort of working already by using filter over config)
 - [ ] documentation
+- [ ] eject Mist from theme as composer package to be used as framework hence anything inside ./src has to stay dependency-free at all times (except require-dev ofc)
