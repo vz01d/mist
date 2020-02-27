@@ -87,7 +87,16 @@ class MistPostType
 	 */
 	public function register(): void
 	{
-		register_extended_post_type($this->name, [], $this->labels());
+		$labels = $this->labels();
+		$params = [];
+		
+		if (count($labels) < 1) {
+			register_extended_post_type($this->name, $params);
+		}
+
+		if (count($labels) > 0) {
+			register_extended_post_type($this->name, $params, $labels);
+		}
 	}
 
 	/**

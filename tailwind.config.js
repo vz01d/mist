@@ -1,7 +1,13 @@
 module.exports = {
-  theme: {
-    extend: {},
-  },
-  variants: {},
-  plugins: [],
-}
+	theme: {
+		extend: {
+			colors: {
+				skeeg: {
+					'400': '#336699'
+				}
+			}
+		}
+	},
+	variants: {},
+	plugins: []
+};

@@ -38,6 +38,11 @@ class MistConfig extends \mist\wrapper\MistTheme
 	 * Theme text domain
 	 */
 	private $textDomain = 'mist';
+	
+	/**
+	 * Theme support
+	 */
+	private $themeSupport = [];
 
 	/**
 	 * Make sure we don't read wrong keys
@@ -109,9 +114,21 @@ class MistConfig extends \mist\wrapper\MistTheme
 	 * 
 	 * @return void
 	 */
-	public function textDomain(array $values): void
+	private function textDomain(array $values): void
 	{
 		$this->textDomain = isset($values[0]) ? $values[0] : $this->textDomain;
+	}
+	
+	/**
+	 * Theme support
+	 * 
+	 * @param array $values - the theme support array
+	 * 
+	 * @return void
+	 */
+	private function themeSupport(array $values): void
+	{
+		$this->themeSupport = isset($values[0]) ? $values : [];
 	}
 
 	/**
@@ -160,6 +177,31 @@ class MistConfig extends \mist\wrapper\MistTheme
 
 		// load text domain
 		load_theme_textdomain($this->textDomain, $this->theme()->rootPath() . '/languages');
+
+		$this->addThemeSupport();
+	}
+
+	/**
+	 * Add the theme support configuration
+	 * 
+	 * @return void
+	 */
+	private function addThemeSupport(): void
+	{
+		if (count($this->themeSupport) > 0) {
+			foreach($this->themeSupport as $themeSupport) {
+				if (is_array($themeSupport)) {
+					$key = array_key_first($themeSupport);
+					add_theme_support($key,
+						array_values($themeSupport)
+					);
+				}
+
+				if (is_string($themeSupport)) {
+					add_theme_support($themeSupport);
+				}
+			}
+		}
 	}
 
 	/**

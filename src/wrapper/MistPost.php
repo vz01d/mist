@@ -34,7 +34,7 @@ class MistPost extends MistWrapper
 	public function init(array $postTypes): void
 	{
 		$count = count($postTypes);
-		if ($count > 1) {
+		if ($count > 0) {
 			foreach($postTypes as $postType) {
 				$postType->register();
 			}
