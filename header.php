@@ -24,16 +24,28 @@ if (!defined('ABSPATH')) {
 <body itemtype="https://schema.org/WebPage" itemscope="itemscope" <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <header
-	class="p-42 py-0 bg-skeeg-400"
+	class="p-42 py-4 bg-skeeg-400"
 	id="masthead"
 	itemtype="https://schema.org/WPHeader"
 	itemscope="itemscope"
 >
-	<!-- TODO: h1 only if is_home() -->
-	<h1 class="my-0 font-skeeg uppercase text-s42 text-white">
-		<?php echo get_bloginfo('name'); ?>
-	</h1>
-	<div class="uppercase text-base font-bold text-white">
-		<?php echo get_bloginfo('description'); ?>
+	<div class="flex">
+		<div class="inline-block flex-1">
+			<!-- TODO: h1 only if is_home() -->
+			<h1 class="my-0 font-skeeg uppercase text-logo text-white leading-none border-b text-center">
+				<?php echo get_bloginfo('name'); ?>
+			</h1>
+			<div class="uppercase font-bold text-white text-size-18 text-center">
+				<?php echo get_bloginfo('description'); ?>
+			</div>
+		</div>
+		<div class="flex-grow flex-shrink">
+			<input
+				id="mist-search"
+				class="py-4 pl-2 focus:pl-12 w-full my-auto h-12 text-size-22 mt-42 rounded duration-300"
+				type="text"
+				placeholder="Suchen"
+			/>
+		</div>
 	</div>
 </header>
