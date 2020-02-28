@@ -21,5 +21,19 @@ if (!defined('ABSPATH')) {
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
+<body itemtype="https://schema.org/WebPage" itemscope="itemscope" <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+<header
+	class="p-42 py-0 bg-skeeg-400"
+	id="masthead"
+	itemtype="https://schema.org/WPHeader"
+	itemscope="itemscope"
+>
+	<!-- TODO: h1 only if is_home() -->
+	<h1 class="my-0 font-skeeg uppercase text-s42 text-white">
+		<?php echo get_bloginfo('name'); ?>
+	</h1>
+	<div class="uppercase text-base font-bold text-white">
+		<?php echo get_bloginfo('description'); ?>
+	</div>
+</header>

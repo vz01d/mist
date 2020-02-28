@@ -104,10 +104,11 @@ class MistTheme extends MistWrapper
 	 */
 	public function enqueueAssets(): void
 	{
-		wp_enqueue_style('theme', self::$themeUri . '/build/style.min.css', false);
-
 		// google fonts
 		wp_enqueue_style('webfonts', self::$assetUri . '/css/fontface.css', false);
+		
+		// TODO: TMP (!) MOVE THIS TO THE "THEME" INSTEAD, IT DOES NOT BELONG TO THE FRAMEWORK
+		wp_enqueue_style('theme', self::$themeUri . '/build/style.min.css', false);
 	}
 
 	/**
