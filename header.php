@@ -44,7 +44,7 @@ if (!defined('ABSPATH')) {
 				id="mist-search"
 				class="py-4 pl-2 focus:pl-12 w-full my-auto h-12 text-size-22 mt-42 rounded duration-300"
 				type="text"
-				placeholder="Suchen"
+				placeholder="42?"
 			/>
 		</div>
 	</div>

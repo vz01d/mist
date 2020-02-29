@@ -110,6 +110,8 @@ class MistTheme extends MistWrapper
 		// TODO: TMP (!) MOVE THIS TO THE "THEME" INSTEAD, IT DOES NOT BELONG TO THE FRAMEWORK
 		wp_enqueue_style('theme', self::$themeUri . '/build/style.min.css', false);
 
+		wp_enqueue_script('theme', self::$assetUri . '/js/custom.min.js', []);
+
 		$this->dequeueAssets();
 	}
 

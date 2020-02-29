@@ -6,9 +6,16 @@
 
   app.init = function () {
     var search = document.getElementById('mist-search');
-    console.log(search);
+    search.addEventListener('focus', function () {
+      search.placeholder = "Was möchtest Du Wissen?";
+    });
+    search.addEventListener('blur', function () {
+      search.placeholder = "42?";
+    });
   };
 
-  document.ready(app.init);
+  document.addEventListener("DOMContentLoaded", function (event) {
+    app.init();
+  });
   return app;
 })(window, document);
