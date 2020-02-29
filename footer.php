@@ -9,8 +9,6 @@ declare(strict_types=1);
  * @since      1.0
  */
 ?>
-
 <footer>
-asdsad
 </footer>
 <?php wp_footer(); ?>
