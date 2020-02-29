@@ -389,6 +389,17 @@ gulp.task( 'translate', () => {
 });
 
 /**
+ * Webfonts -> FA
+ */
+gulp.task( 'webfonts', () => {
+	return gulp
+		.src( ['./node_modules/@fortawesome/fontawesome-free/scss/*.scss',
+		'./node_modules/@fortawesome/fontawesome-free/webfonts/*'] )
+		.pipe( gulp.dest( config.webfontDir ) )
+		.pipe( notify({ message: '\n\n✅  ===> WEBFONTS — completed!\n', onLast: true }) );
+});
+
+/**
  * Watch Tasks.
  *
  * Watches for file changes and runs specific tasks.

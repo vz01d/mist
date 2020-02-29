@@ -1,8 +1,8 @@
 {
-  "name": "your-project",
-  "description": "A WPGulp based project.",
+  "name": "Mistify",
+  "description": "A Theme built on top of Mist Framework.",
   "version": "1.0.0",
-  "author": "Author Name (https://twitter.com/MrAhmadAwais/)",
+  "author": "Sebo https://42geeks.gg",
   "repository": {
     "type": "git",
     "url": "https://github.com/ahmadawais/WPGulp"
@@ -50,5 +50,8 @@
     "images": "gulp images",
     "clearCache": "gulp clearCache",
     "translate": "gulp translate"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1"
   }
 }

@@ -24,28 +24,46 @@ if (!defined('ABSPATH')) {
 <body itemtype="https://schema.org/WebPage" itemscope="itemscope" <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <header
-	class="p-42 py-4 bg-skeeg-400"
+	class="p-42 py-4 bg-skeeg-400 md:flex"
 	id="masthead"
 	itemtype="https://schema.org/WPHeader"
 	itemscope="itemscope"
 >
-	<div class="flex">
-		<div class="inline-block flex-1">
-			<!-- TODO: h1 only if is_home() -->
-			<h1 class="my-0 font-skeeg uppercase text-logo text-white leading-none border-b text-center">
-				<?php echo get_bloginfo('name'); ?>
-			</h1>
-			<div class="uppercase font-bold text-white text-size-18 text-center">
-				<?php echo get_bloginfo('description'); ?>
-			</div>
-		</div>
-		<div class="flex-grow flex-shrink">
-			<input
-				id="mist-search"
-				class="py-4 pl-2 focus:pl-12 w-full my-auto h-12 text-size-22 mt-42 rounded duration-300"
-				type="text"
-				placeholder="42?"
-			/>
+	<div class="
+		inline-block
+		w-full
+		md:flex-1
+		md:flex-shrink
+		lg:w-1/3
+	">
+		<!-- TODO: h1 only if is_home() -->
+		<h1 class="my-0 font-skeeg uppercase text-logo text-white leading-none text-center md:text-left">
+			<?php echo get_bloginfo('name'); ?>
+				<input
+					id="mist-search"
+					class="
+						w-full
+						ml-0
+						mt-10
+						md:ml-4
+						py-4
+						pl-2
+						focus:pl-4
+						h-16
+						text-size-22
+						duration-300
+						lg:w-4/5
+						xl:w-1/3
+						float-right
+					"
+					type="text"
+					placeholder="42?"
+				/>
+				<i class="fas fa-search"></i>
+		</h1>
+		<hr class="w-full h-1 bg-white" />
+		<div class="uppercase font-bold text-white text-size-18 text-center md:text-left">
+			<?php echo get_bloginfo('description'); ?>
 		</div>
 	</div>
 </header>

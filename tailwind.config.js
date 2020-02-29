@@ -10,7 +10,8 @@ module.exports = {
 				'42': '36px'
 			},
 			margin: {
-				'42': '42px'
+				'42': '42px',
+				'10': '10px'
 			}
 		},
 		fontFamily: {
@@ -24,6 +25,16 @@ module.exports = {
 			'size-24': '24px',
 			'size-22': '22px',
 			'size-18': '18px'
+		},
+		container: {
+			center: true,
+			padding: '42px'
+		},
+		screens: {
+			'sm': '640px',
+			'md': '768px',
+			'lg': '1024px',
+			'xl': '1200px'
 		}
 	},
 	variants: {
