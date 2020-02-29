@@ -51,7 +51,5 @@
     "clearCache": "gulp clearCache",
     "translate": "gulp translate"
   },
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.1"
-  }
+  "dependencies": {}
 }

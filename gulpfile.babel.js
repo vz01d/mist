@@ -128,7 +128,8 @@ gulp.task( 'styles', () => {
 				'./*.php',
 				'./templates/*.php',
                 './src/**/*.php',
-                './assets/css/style.scss'
+				'./assets/css/style.scss',
+				'./webfonts/*.scss'
 			],
 			css: [
 				'./assets/css/style.scss'
@@ -386,17 +387,6 @@ gulp.task( 'translate', () => {
 		)
 		.pipe( gulp.dest( config.translationDestination + '/' + config.translationFile ) )
 		.pipe( notify({ message: '\n\n✅  ===> TRANSLATE — completed!\n', onLast: true }) );
-});
-
-/**
- * Webfonts -> FA
- */
-gulp.task( 'webfonts', () => {
-	return gulp
-		.src( ['./node_modules/@fortawesome/fontawesome-free/scss/*.scss',
-		'./node_modules/@fortawesome/fontawesome-free/webfonts/*'] )
-		.pipe( gulp.dest( config.webfontDir ) )
-		.pipe( notify({ message: '\n\n✅  ===> WEBFONTS — completed!\n', onLast: true }) );
 });
 
 /**

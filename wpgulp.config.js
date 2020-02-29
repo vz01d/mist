@@ -42,9 +42,6 @@ module.exports = {
 	watchJsCustom: './assets/js/custom/*.js', // Path to all custom JS files.
 	watchPhp: './**/*.php', // Path to all PHP files.
 
-	// Webfonts
-	webfontDir: './webfonts',
-
 	// Translation options.
 	textDomain: 'MIST', // Your textdomain here.
 	translationFile: 'MIST.pot', // Name of the translation file.
