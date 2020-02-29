@@ -11,7 +11,8 @@
     ],
     "minimum-stability": "dev",
 	"require": {
-        "johnbillion/extended-cpts": "dev-master"
+        "johnbillion/extended-cpts": "dev-master",
+        "meyfa/php-svg": "dev-master"
     },
     "autoload": {
         "psr-4": {

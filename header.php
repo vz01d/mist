@@ -12,6 +12,8 @@ if (!defined('ABSPATH')) {
 	exit('direct access not allowed.');
 }
 
+use mist\wrapper\MistIcon;
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -59,7 +61,7 @@ if (!defined('ABSPATH')) {
 					type="text"
 					placeholder="42?"
 				/>
-				<i class="fas fa-search"></i>
+				<?php echo new MistIcon('001-home'); ?>
 		</h1>
 		<hr class="w-full h-1 bg-white" />
 		<div class="uppercase font-bold text-white text-size-18 text-center md:text-left">

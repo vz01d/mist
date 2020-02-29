@@ -178,6 +178,26 @@ class MistTheme extends MistWrapper
 	{
 		return self::$themeUri;
 	}
+	
+	/**
+	 * Theme asset uri
+	 *
+	 * @return string - the theme asset uri
+	 */
+	public function assetUri(): string
+	{
+		return self::$assetUri;
+	}
+
+	/**
+	 * Theme asset path
+	 *
+	 * @return string - the theme asset path
+	 */
+	public function assetPath(): string
+	{
+		return self::$assetPath;
+	}
 
 	/**
 	 * Is a child theme?

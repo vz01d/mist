@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb7edf07f06f505062c7a63a9f5d239a",
+    "content-hash": "6c1621e4db1caad9b05c1255d3e18817",
     "packages": [
         {
             "name": "johnbillion/extended-cpts",
@@ -65,13 +65,60 @@
             "description": "A library which provides extended functionality to WordPress custom post types and taxonomies.",
             "homepage": "https://github.com/johnbillion/extended-cpts/",
             "time": "2019-11-12T13:53:03+00:00"
+        },
+        {
+            "name": "meyfa/php-svg",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/meyfa/php-svg.git",
+                "reference": "668a9d4f1c4c5fa45328f44ad8146d675cfe94d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/meyfa/php-svg/zipball/668a9d4f1c4c5fa45328f44ad8146d675cfe94d1",
+                "reference": "668a9d4f1c4c5fa45328f44ad8146d675cfe94d1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-simplexml": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "meyfa/phpunit-assert-gd": "^1.1",
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SVG\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabian Meyer",
+                    "homepage": "http://meyfa.net"
+                }
+            ],
+            "description": "Read, edit, write, and render SVG files with PHP",
+            "homepage": "https://github.com/meyfa/php-svg",
+            "keywords": [
+                "svg"
+            ],
+            "time": "2019-10-17T07:57:03+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "johnbillion/extended-cpts": 20
+        "johnbillion/extended-cpts": 20,
+        "meyfa/php-svg": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
