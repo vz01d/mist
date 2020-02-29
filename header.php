@@ -61,7 +61,14 @@ use mist\wrapper\MistIcon;
 					type="text"
 					placeholder="42?"
 				/>
-				<?php echo new MistIcon('001-home'); ?>
+				<?php echo new MistIcon(
+					'001-home',
+					[
+						'fill' => '#ffffff',
+						'width' => 42,
+						'height' => 42
+					]);
+				?>
 		</h1>
 		<hr class="w-full h-1 bg-white" />
 		<div class="uppercase font-bold text-white text-size-18 text-center md:text-left">
