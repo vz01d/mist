@@ -41,6 +41,16 @@ use mist\wrapper\MistIcon;
 		<!-- TODO: h1 only if is_home() -->
 		<h1 class="my-0 font-skeeg uppercase text-logo text-white leading-none text-center md:text-left">
 			<?php echo get_bloginfo('name'); ?>
+			<div class="hidden md:block float-left p-4">
+				<?php new MistIcon(
+					'152-magic-wand',
+					[
+						'fill' => '#ffffff',
+						'width' => '36px',
+						'height' => '36px'
+					]);
+				?>
+			</div>
 				<input
 					id="mist-search"
 					class="
@@ -61,14 +71,6 @@ use mist\wrapper\MistIcon;
 					type="text"
 					placeholder="42?"
 				/>
-				<?php echo new MistIcon(
-					'001-home',
-					[
-						'fill' => '#ffffff',
-						'width' => 42,
-						'height' => 42
-					]);
-				?>
 		</h1>
 		<hr class="w-full h-1 bg-white" />
 		<div class="uppercase font-bold text-white text-size-18 text-center md:text-left">

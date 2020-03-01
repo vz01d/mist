@@ -46,6 +46,8 @@ class MistIcon extends MistWrapper
 		$this->props = $props;
 
 		$this->validateProps();
+
+		return $this->render();
 	}
 
 	/**
@@ -82,7 +84,7 @@ class MistIcon extends MistWrapper
 	 * 
 	 * @return string - the icon svg or name
 	 */
-	public function __toString()
+	private function render()
 	{
 		$iconPath = $this->theme()->assetPath() . '/icons/' . $this->iconName . '.svg';
 		if (true === file_exists($iconPath)) {
@@ -97,7 +99,5 @@ class MistIcon extends MistWrapper
 			header('Content-Type: image/svg+xml');
 			echo $img;
 		}
-
-		return $this->iconName;
 	}
 }
