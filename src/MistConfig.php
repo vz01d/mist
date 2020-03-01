@@ -45,6 +45,11 @@ class MistConfig extends \mist\wrapper\MistTheme
 	private $themeSupport = [];
 
 	/**
+	 * Widget areas
+	 */
+	private $widgetAreas = [];
+
+	/**
 	 * Make sure we don't read wrong keys
 	 * and load them
 	 */
@@ -53,6 +58,7 @@ class MistConfig extends \mist\wrapper\MistTheme
 		'themeSupport',
 		'navMenus',
 		'textDomain',
+		'widgetAreas'
 	];
 
 	/**
@@ -105,6 +111,18 @@ class MistConfig extends \mist\wrapper\MistTheme
 				}
 			}
 		}
+	}
+
+	/**
+	 * Read widget areas from config
+	 * 
+	 * @param array $values - parameters for the widget area (sidebar)
+	 * 
+	 * @return void
+	 */
+	private function widgetAreas(array $values): void
+	{
+		$this->widgetAreas = count($values) > 0 ? $values : []; 
 	}
 
 	/**
@@ -180,6 +198,31 @@ class MistConfig extends \mist\wrapper\MistTheme
 
 		$this->addThemeSupport();
 	}
+	
+	/**
+	 * Run widgets_init hook
+	 * 
+	 * @return void
+	 */
+	public function initWidgets(): void
+	{
+		$widgetAreas = apply_filters('mist_widget_areas', $this->widgetAreas);
+		array_map(function(array $item) {
+			if (false === isset($item['name'])) {
+				throw new \Exception('You must provide a name for the sidebar to register. Check mist.config.json for errors.');
+			}
+
+			// TODO: OOP -> check what happens with Gutenberg && sidebars
+			register_sidebar([
+				'name' => __($item['name'], $this->textDomain),
+				'id' => $item['id'],
+				'beforeWidget' => $item['beforeWidget'],
+				'afterWidget' => $item['afterWidget'],
+				'beforeTitle' => $item['beforeTitle'],
+				'afterTitle' => $item['afterTitle'],
+			]);
+		}, $widgetAreas);
+	}
 
 	/**
 	 * Add the theme support configuration
@@ -188,8 +231,9 @@ class MistConfig extends \mist\wrapper\MistTheme
 	 */
 	private function addThemeSupport(): void
 	{
-		if (count($this->themeSupport) > 0) {
-			foreach($this->themeSupport as $themeSupport) {
+		$themeSup = apply_filters('mist_theme_support', $this->themeSupport);
+		if (count($themeSup) > 0) {
+			foreach($themeSup as $themeSupport) {
 				if (is_array($themeSupport)) {
 					$key = array_key_first($themeSupport);
 					add_theme_support($key,

@@ -32,7 +32,11 @@ class MistIcon extends MistWrapper
 	/**
 	 * Icon properties
 	 */
-	private $props = [];
+	private $props = [
+		'fill' => '#000000',
+		'width' => '14px',
+		'height' => '14px',
+	];
 
 	/**
 	 * Initialize object
@@ -43,39 +47,10 @@ class MistIcon extends MistWrapper
 	public function __construct(string $iconName, array $props = [])
 	{
 		$this->iconName = $iconName;
-		$this->props = $props;
-
-		$this->validateProps();
+		$diff = array_diff($props, $this->props);
+		$this->props = count($diff) < 1 ? $this->props : $diff;
 
 		return $this->render();
-	}
-
-	/**
-	 * Validate set properties and only
-	 * overwrite defaults if valid
-	 */
-	private function validateProps(): void
-	{
-		// TODO: this needs more thought
-		/**
-		 * not always 7, maybe 6, 3 or 4
-		 * wether # or not also consider rgba hsl support
-		 */
-		if (
-			false === isset($this->props['fill']) ||
-			false === is_string($this->props['fill']) ||
-			7 !== strlen($this->props['fill'])
-		) {
-			$this->props['fill'] = '#000';
-		}
-
-		if (false === isset($this->props['width'])) {
-			$this->props['width'] = '14px';
-		}
-
-		if (false === isset($this->props['height'])) {
-			$this->props['height'] = '14px';
-		}
 	}
 
 	/**

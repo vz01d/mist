@@ -59,6 +59,7 @@ final class MistBase extends MistWrapper
 		// WP hooks
 		add_action('init', [$this, 'initTheme']);
 		add_action('after_setup_theme', [$this->theme(), 'afterSetup']);
+		add_action('widgets_init', [$this->theme(), 'initWidgets']);
 	}
 
 	/**

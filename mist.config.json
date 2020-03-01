@@ -12,5 +12,31 @@
 		"main",
 		"footer"
 	],
-	"textDomain": "skeeg"
+	"textDomain": "skeeg",
+	"widgetAreas": [
+		{
+			"name": "Main Sidebar",
+			"id": "mainside",
+			"beforeWidget": "",
+			"afterWidget": "",
+			"beforeTitle": "",
+			"afterTitle": ""
+		},
+		{
+			"name": "Footer #1",
+			"id": "footer1"
+		},
+		{
+			"name": "Footer #2",
+			"id": "footer2"
+		},
+		{
+			"name": "Footer #3",
+			"id": "footer3"
+		},
+		{
+			"name": "Footer #4",
+			"id": "footer4"
+		}
+	]
 }

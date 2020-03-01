@@ -3,7 +3,7 @@
 (function (window, document) {
   var app = {}; // -> Server ?
 
-  var placeHolders = ["Was möchtest Du Wissen?", "Suchst Du was?", "Hast Du heute schon gelächelt?", "Hast Du eine Frage?", "Was bedeutet 42?", "Gibt es einen Vierten Aggregatzustand?", "Pi * X² * V / (Pi * 3 / 9) * 42³?", "V?", "X?", "???"];
+  var placeHolders = ["Was möchtest Du Wissen?", "Suchst Du was?", "Hast Du heute schon gelächelt?", "Hast Du eine Frage?", "Was bedeutet 42?", "Gibt es einen Vierten Aggregatzustand?", "Pi * X² * V / (Pi * 3 / 9) * ((42³ / 3600) + ((42/100) + 3))?", "V?", "X?", "???", "220 550", "OCT"];
   app.state = false; // toggled
 
   app.init = function () {

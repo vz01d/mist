@@ -7,7 +7,7 @@ module.exports = {
 				}
 			},
 			padding: {
-				'42': '36px'
+				'42': '42px'
 			},
 			margin: {
 				'42': '42px',

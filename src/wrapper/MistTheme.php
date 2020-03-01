@@ -140,6 +140,16 @@ class MistTheme extends MistWrapper
 	}
 
 	/**
+	 * Initialize theme widgets
+	 * 
+	 * @return void
+	 */
+	public function initWidgets(): void
+	{
+		self::$config->initWidgets();
+	}
+
+	/**
 	 * Initialize the theme configuration
 	 *
 	 * @return void

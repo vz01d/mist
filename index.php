@@ -8,10 +8,13 @@ declare(strict_types=1);
  * @subpackage Templates
  * @since      1.0
  */
+if (!defined('ABSPATH')) {
+	exit('direct access not allowed.');
+}
 
 get_header();
 ?>
-<div class="bg-red-500">
+<main class="p-42">
 <?php
 if (have_posts()) {
 	while (have_posts()) {
@@ -20,6 +23,6 @@ if (have_posts()) {
 	}
 }
 ?>
-</div>
+</main>
 <?php
 get_footer();

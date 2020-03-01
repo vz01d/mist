@@ -29,7 +29,6 @@ img,svg,object{display:block;vertical-align:middle}
 img{max-width:100%;height:auto}
 .container{width:100%;margin-right:auto;margin-left:auto;padding-right:42px;padding-left:42px}
 .bg-white{background-color:#fff}
-.bg-red-500{background-color:#f56565}
 .bg-skeeg-400{background-color:#369}
 .inline-block{display:inline-block}
 .hidden{display:none}
@@ -44,7 +43,7 @@ img{max-width:100%;height:auto}
 .ml-0{margin-left:0}
 .mt-10{margin-top:10px}
 .p-4{padding:1rem}
-.p-42{padding:36px}
+.p-42{padding:42px}
 .py-4{padding-top:1rem;padding-bottom:1rem}
 .pl-2{padding-left:.5rem}
 .focus\:pl-4:focus{padding-left:1rem}
