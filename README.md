@@ -26,6 +26,8 @@ The framework leaves choices to you everywhere not getting in your way with some
 - [x] load theme support
 - [x] load nav menus
 - [x] allow all configuration items to be created via code (sometimes config just does not fit)
+- [ ] move "theme" assets/enqueuing to theme (atm in framework)
+- [ ] add sticky header option
 - [ ] add svg sizes and default colors to mist config
 - [ ] add customizer settings via config
 - [ ] add schema.org (all of them)
