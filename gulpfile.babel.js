@@ -129,7 +129,8 @@ gulp.task( 'styles', () => {
 				'./templates/*.php',
                 './src/**/*.php',
 				'./assets/css/style.scss',
-				'./webfonts/*.scss'
+				'./webfonts/*.scss',
+				'./mist.config.json'
 			],
 			css: [
 				'./assets/css/style.scss'

@@ -62,6 +62,23 @@ class MistConfig extends \mist\wrapper\MistTheme
 	];
 
 	/**
+	 * Widget Config Keys
+	 */
+	private $widgetProps = [
+		'id'            => 'primary',
+		'name'          => 'Primary Sidebar',
+		'description'   => 'A short description of the sidebar.',
+		'before_widget' => '<WTAG id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</WTAG>',
+		'before_title'  => '<TTAG class="widget-title">',
+		'after_title'   => '</TTAG>',
+		'wrapper_classes' => ['widget'],
+		'wrapper_tag' => 'div',
+		'title_classes' => ['widget-title'],
+		'title_tag' => 'span'
+	];
+
+	/**
 	 * Initialize the configiguration object
 	 */
 	public function __construct()
@@ -212,14 +229,16 @@ class MistConfig extends \mist\wrapper\MistTheme
 				throw new \Exception('You must provide a name for the sidebar to register. Check mist.config.json for errors.');
 			}
 
+			$item = wp_parse_args($item, $this->widgetProps);
+
 			// TODO: OOP -> check what happens with Gutenberg && sidebars
 			register_sidebar([
 				'name' => __($item['name'], $this->textDomain),
 				'id' => $item['id'],
-				'beforeWidget' => $item['beforeWidget'],
-				'afterWidget' => $item['afterWidget'],
-				'beforeTitle' => $item['beforeTitle'],
-				'afterTitle' => $item['afterTitle'],
+				'before_widget' => $item['before_widget'],
+				'after_widget' => $item['after_widget'],
+				'before_title' => $item['before_title'],
+				'after_title' => $item['after_title'],
 			]);
 		}, $widgetAreas);
 	}

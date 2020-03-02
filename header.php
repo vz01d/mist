@@ -26,7 +26,7 @@ use mist\wrapper\MistIcon;
 <body itemtype="https://schema.org/WebPage" itemscope="itemscope" <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <header
-	class="p-42 py-4 bg-skeeg-400 md:flex"
+	class="p-42 py-4 md:py-42 bg-skeeg-400 md:flex"
 	id="masthead"
 	itemtype="https://schema.org/WPHeader"
 	itemscope="itemscope"

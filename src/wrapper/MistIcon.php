@@ -47,8 +47,7 @@ class MistIcon extends MistWrapper
 	public function __construct(string $iconName, array $props = [])
 	{
 		$this->iconName = $iconName;
-		$diff = array_diff($props, $this->props);
-		$this->props = count($diff) < 1 ? $this->props : $diff;
+		$this->props = wp_parse_args($props, $this->props);
 
 		return $this->render();
 	}
