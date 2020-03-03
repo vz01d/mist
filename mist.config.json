@@ -18,25 +18,46 @@
 			"name": "Main Sidebar",
 			"id": "mainside",
 			"title_classes": [
-				"text-size-42",
-				"font-skeeg"
+				"text-size-36",
+				"font-skeeg",
+				"text-skeeg-400"
+			],
+			"wrapper_classes": [
+				"text-center",
+				"text-size-18"
 			]
 		},
 		{
 			"name": "Footer #1",
-			"id": "footer1"
+			"id": "footer1",
+			"title_classes": [
+				"text-size-36",
+				"font-skeeg"
+			]
 		},
 		{
 			"name": "Footer #2",
-			"id": "footer2"
+			"id": "footer2",
+			"title_classes": [
+				"text-size-36",
+				"font-skeeg"
+			]
 		},
 		{
 			"name": "Footer #3",
-			"id": "footer3"
+			"id": "footer3",
+			"title_classes": [
+				"text-size-36",
+				"font-skeeg"
+			]
 		},
 		{
 			"name": "Footer #4",
-			"id": "footer4"
+			"id": "footer4",
+			"title_classes": [
+				"text-size-36",
+				"font-skeeg"
+			]
 		}
 	]
 }

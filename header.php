@@ -67,6 +67,7 @@ use mist\wrapper\MistIcon;
 						lg:w-4/5
 						xl:w-1/3
 						float-right
+						placeholder-skeeg-400
 					"
 					type="text"
 					placeholder="42?"

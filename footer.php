@@ -9,6 +9,44 @@ declare(strict_types=1);
  * @since      1.0
  */
 ?>
-<footer>
+<footer class="bg-skeeg-400 static bottom-0 clear-both text-white">
+	<div class="flex p-42">
+		<div class="flex-1 text-center">
+			<?php if (is_active_sidebar('footer1')) : ?>
+				<?php dynamic_sidebar('footer1'); ?>
+			<?php endif; ?>
+		</div>
+		<div class="flex-1 text-center">
+			<?php if (is_active_sidebar('footer2')) : ?>
+				<?php dynamic_sidebar('footer2'); ?>
+			<?php endif; ?>
+		</div>
+		<div class="flex-1 text-center">
+			<?php if (is_active_sidebar('footer3')) : ?>
+				<?php dynamic_sidebar('footer3'); ?>
+			<?php endif; ?>
+		</div>
+		<div class="flex-1 text-center">
+			<?php if (is_active_sidebar('footer4')) : ?>
+				<?php dynamic_sidebar('footer4'); ?>
+			<?php endif; ?>
+		</div>
+	</div>
+	<div class="flex border-t-2 border-dotted px-42">
+		<div class="flex-1 align-center self-center">
+			&copy; 2020 - 42GEEKS.GG
+		</div>
+		<div class="flex-1 text-right">
+			<?php 
+				// TODO: custom walker
+				echo wp_nav_menu(
+					[
+						'menu' => 'footer',
+						'menu_class' => 'list-none mist-inline-nav',
+					]
+				);
+			?>
+		</div>
+	</div>
 </footer>
 <?php wp_footer(); ?>

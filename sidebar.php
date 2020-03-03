@@ -20,8 +20,7 @@ if (is_active_sidebar('mainside')) : ?>
 			sidebar
 			widget-area
 			w-full
-			md:w-1/4
-			md:float-right
+			lg:float-right
 			lg:w-1/3
 			xl:w-2/5
 		"

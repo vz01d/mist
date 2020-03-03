@@ -18,10 +18,10 @@ get_header();
 	class="
 		p-42
 		w-full
-		md:w-3/4
-		md:float-left
+		lg:float-left
 		lg:w-2/3
 		xl:w-3/5
+		text-size-18
 	"
 >
 <?php
