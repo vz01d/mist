@@ -14,25 +14,27 @@ if (!defined('ABSPATH')) {
 
 get_header();
 ?>
-<main
-	class="
-		p-42
-		w-full
-		lg:float-left
-		lg:w-2/3
-		xl:w-3/5
-		text-size-18
-	"
->
-<?php
-if (have_posts()) {
-	while (have_posts()) {
-		the_post();
-		the_content();
+<div class="container">
+	<main
+		class="
+			py-42
+			lg:p-42
+			w-full
+			lg:float-left
+			lg:w-2/3
+			xl:w-3/5
+			text-size-18
+		"
+	>
+	<?php
+	if (have_posts()) {
+		while (have_posts()) {
+			the_post();
+			the_content();
+		}
 	}
-}
-?>
-</main>
-<?php
-get_sidebar(); ?>
+	?>
+	</main>
+	<?php get_sidebar(); ?>	
+</div>
 <?php get_footer();

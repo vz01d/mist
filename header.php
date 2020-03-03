@@ -32,6 +32,7 @@ use mist\wrapper\MistIcon;
 	itemscope="itemscope"
 >
 	<div class="
+		container
 		inline-block
 		w-full
 		md:flex-1

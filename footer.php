@@ -10,7 +10,7 @@ declare(strict_types=1);
  */
 ?>
 <footer class="bg-skeeg-400 static bottom-0 clear-both text-white">
-	<div class="flex p-42">
+	<div class="container flex p-42">
 		<div class="flex-1 text-center">
 			<?php if (is_active_sidebar('footer1')) : ?>
 				<?php dynamic_sidebar('footer1'); ?>
