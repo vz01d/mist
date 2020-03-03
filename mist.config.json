@@ -17,20 +17,10 @@
 		{
 			"name": "Main Sidebar",
 			"id": "mainside",
-			"before_widget": "<div id=\"%1$s\" class=\"widget %2$s\">",
-			"after_widget": "</div>",
-			"before_title": "<span class=\"widget-title\">",
-			"after_title": "</span>",
-			"wrapper_classes": [
-				"font-skeeg",
-				"text-size-42",
-				"color-skeeg-400"
-			],
-			"wrapper_tag": "div",
 			"title_classes": [
-				"widget-title"
-			],
-			"title_tag": "span"
+				"text-size-42",
+				"font-skeeg"
+			]
 		},
 		{
 			"name": "Footer #1",

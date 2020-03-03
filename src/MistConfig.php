@@ -68,9 +68,9 @@ class MistConfig extends \mist\wrapper\MistTheme
 		'id'            => 'primary',
 		'name'          => 'Primary Sidebar',
 		'description'   => 'A short description of the sidebar.',
-		'before_widget' => '<WTAG id="%1$s" class="widget %2$s">',
+		'before_widget' => '<WTAG id="%1$s" class="%2$s %%MISTCLASSES%%">',
 		'after_widget'  => '</WTAG>',
-		'before_title'  => '<TTAG class="widget-title">',
+		'before_title'  => '<TTAG class="%%MISTCLASSES%%">',
 		'after_title'   => '</TTAG>',
 		'wrapper_classes' => ['widget'],
 		'wrapper_tag' => 'div',
@@ -230,6 +230,7 @@ class MistConfig extends \mist\wrapper\MistTheme
 			}
 
 			$item = wp_parse_args($item, $this->widgetProps);
+			$item = $this->builtSidebarArgs($item);
 
 			// TODO: OOP -> check what happens with Gutenberg && sidebars
 			register_sidebar([
@@ -241,6 +242,57 @@ class MistConfig extends \mist\wrapper\MistTheme
 				'after_title' => $item['after_title'],
 			]);
 		}, $widgetAreas);
+	}
+
+	/**
+	 * Create sidebar args from all possible input
+	 * 
+	 * @param array $args - the wp parsed args used to
+	 * generate mist sidebar args
+	 * 
+	 * @return array - the new args
+	 */
+	private function builtSidebarArgs(array $args): array
+	{
+		// replace tags
+		$wtags = str_replace(
+			'WTAG',
+			$args['wrapper_tag'],
+			[
+				$args['before_widget'],
+				$args['after_widget'],
+			]
+		);
+
+		$args['before_widget'] = $wtags[0];
+		$args['after_widget'] = $wtags[1];
+		
+		$ttags = str_replace(
+			'TTAG',
+			$args['title_tag'],
+			[
+				$args['before_title'],
+				$args['after_title'],
+			]
+		);
+
+		$args['before_title'] = $ttags[0];
+		$args['after_title'] = $ttags[1];
+
+		// replace classes
+		$args['before_widget'] = str_replace(
+			'%%MISTCLASSES%%',
+			implode(' ', $args['wrapper_classes']),
+			$args['before_widget']
+		);
+
+		$args['before_title'] = str_replace(
+			'%%MISTCLASSES%%',
+			implode(' ', $args['title_classes']),
+			$args['before_title']
+		);
+
+		return $args;
 	}
 
 	/**
