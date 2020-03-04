@@ -54,11 +54,12 @@ class MistConfig extends \mist\wrapper\MistTheme
 	 * and load them
 	 */
 	private $configKeys = [
+		'mistGlobal',
 		'postTypes',
 		'themeSupport',
 		'navMenus',
 		'textDomain',
-		'widgetAreas'
+		'widgetAreas',
 	];
 
 	/**
@@ -75,8 +76,13 @@ class MistConfig extends \mist\wrapper\MistTheme
 		'wrapper_classes' => ['widget'],
 		'wrapper_tag' => 'div',
 		'title_classes' => ['widget-title'],
-		'title_tag' => 'span'
+		'title_tag' => 'span',
 	];
+
+	/**
+	 * Global settings
+	 */
+	private $globalConfig;
 
 	/**
 	 * Initialize the configiguration object
@@ -131,6 +137,19 @@ class MistConfig extends \mist\wrapper\MistTheme
 	}
 
 	/**
+	 * Load global config
+	 * 
+	 * @param array $values - global config
+	 * 
+	 * @return void
+	 */
+	private function mistGlobal(array $values): void
+	{
+		// cast back
+		$this->globalConfig = (object)$values;
+	}
+
+	/**
 	 * Read widget areas from config
 	 * 
 	 * @param array $values - parameters for the widget area (sidebar)
@@ -181,7 +200,10 @@ class MistConfig extends \mist\wrapper\MistTheme
 
 		// mini factory
 		foreach($objects as $object) {
-			$pt = new MistPostType();
+			$pt = new MistPostType([
+				'excerpt_length' => $this->globalConfig->excerpt_length,
+				'excerpt_text' => $this->globalConfig->excerpt_text
+			]);
 			$pt->setup($object);
 			$this->postTypes[] = $pt;
 		}

@@ -3,7 +3,8 @@ module.exports = {
 		extend: {
 			colors: {
 				skeeg: {
-					'400': '#336699'
+					'400': '#336699',
+					'500': '#5276a5'
 				}
 			},
 			padding: {

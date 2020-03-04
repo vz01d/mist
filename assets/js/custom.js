@@ -1,9 +1,10 @@
 "use strict";
 
 (function (window, document) {
-  var app = {}; // -> Server ?
+  var app = {};
+  var xT; // -> Server ?
 
-  var placeHolders = ["Was möchtest Du Wissen?", "Suchst Du was?", "Hast Du heute schon gelächelt?", "Hast Du eine Frage?", "Was bedeutet 42?", "Gibt es einen Vierten Aggregatzustand?", "Pi * X² * V / (Pi * 3 / 9) * ((42³ / 3600) + ((42/100) + 3))?", "V?", "X?", "???", "220 550", "OCT"];
+  var placeHolders = ["Was möchtest Du Wissen?", "Suchst Du was?", "Hast Du heute schon gelächelt?", "Hast Du eine Frage?", "Was bedeutet 42?", "Gibt es einen Vierten Aggregatzustand?", "Pi * X² * V / (Pi * 3 / 9) * ((42³ / 3600) + ((42/100) + 3))?", "V?", "X?", "???", "DEC", "220 550", "+", "OCT", "-0 && -1", "42 * Pi = V² / X³"];
   app.state = false; // toggled
 
   app.init = function () {

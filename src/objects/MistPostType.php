@@ -10,6 +10,8 @@ declare(strict_types=1);
  */
 namespace mist\objects;
 
+use mist\wrapper\MistPost;
+
 /**
  * MistPostType - Post Type as object
  * this will allow for later customization like removing
@@ -20,7 +22,7 @@ namespace mist\objects;
  * @author   Sebo <sebo@42geeks.gg>
  * @license  GPLv3 https://opensource.org/licenses/gpl-3.0.php
  */
-class MistPostType
+class MistPostType extends MistPost
 {
 	/**
 	 * Post type name
@@ -37,7 +39,31 @@ class MistPostType
 	 */
 	public $plural = '';
 
-	public function __construct(){}
+	/**
+	 * Excerpt length
+	 */
+	public $excerptLength = 231;
+	
+	/**
+	 * Excerpt text
+	 */
+	public $excerptText = 'read more ...';
+
+	/**
+	 * Create new Posttype object
+	 * 
+	 * @param array $args - the parameters for the post type
+	 */
+	public function __construct(array $args)
+	{
+		if (true === isset($args['excerpt_length'])) {
+			$this->excerptLength = $args['excerpt_length'];
+		}
+
+		if (true === isset($args['excerpt_text'])) {
+			$this->excerptText = $args['excerpt_text'];
+		}
+	}
 	
 	/**
 	 * Setup the post type
@@ -64,6 +90,9 @@ class MistPostType
 			$args,
 			array_keys($args)
 		);
+
+        add_filter('get_the_excerpt', [$this, 'excerptLength'], 999);
+        add_filter('excerpt_more', [$this, 'excerptMoreText']);
 	}
 
 	/**
@@ -77,9 +106,44 @@ class MistPostType
 	{
 		$this->singular = isset($params['singular']) ? $params['singular'] : '';
 		$this->plural = isset($params['plural']) ? $params['plural'] : '';
+		$this->excerptLength = isset($params['excerpt_length']) ? $params['excerpt_length'] : $this->excerptLength;
+		$this->excerptText = isset($params['excerpt_text']) ? $params['excerpt_text'] : $this->excerptText;
 	}
 
 	/**
+     * Change excerpt read more text
+     *
+     * @param string $more - the 6current more tag
+     *
+     * @return string - the new more tag
+     */
+    public function excerptMoreText(string $more): string
+    {
+        $postId = get_queried_object_id();
+        return '<a class="moretag inline-block" href="' .
+               get_permalink($postId) .
+               '">' .
+               $this->excerptText .
+        '</a>';
+    }
+
+	/**
+     * Change excerpt default length
+     *
+     * @param string $excerpt - the excerpt input
+     *
+     * @return string - the new excerpt
+     *
+     */
+    public function excerptLength(string $excerpt): string
+    {
+		if ('' === $excerpt || $this->name !== get_post_type()) {
+			return $excerpt;
+		}
+		return substr($excerpt, 0, $this->excerptLength) . $this->excerptMoreText('');
+	}
+
+	/**9
 	 * Register the post type
 	 * TODO: make extended-cpts optional
 	 * 

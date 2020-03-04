@@ -16,7 +16,8 @@ if (is_active_sidebar('mainside')) : ?>
 	<aside 
 		id="secondary"
 		class="
-			p-42
+			py-42
+			pl-42
 			sidebar
 			widget-area
 			w-full

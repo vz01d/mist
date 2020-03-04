@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
- * The theme's index.php file.
+ * The theme's search.php file.
  *
  * @category   Theme Framework
  * @package    Mist
@@ -30,8 +30,10 @@ get_header();
 	if (have_posts()) {
 		while (have_posts()) {
 			the_post();
-			the_content();
+			get_template_part( 'templates/archive' );
 		}
+	} else {
+		get_template_part( 'templates/404' );
 	}
 	?>
 	</main>

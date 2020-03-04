@@ -1,7 +1,19 @@
 {
+	"mistGlobal": {
+		"excerpt_length": 200,
+		"excerpt_text": "  READ ON ..."
+	},
 	"postTypes": [
 		{
-			"gadget": []
+			"post": {
+				"excerpt_length": 168,
+				"excerpt_text": " ___MEHR_LESEN:"
+			}
+		},
+		{
+			"gadget": {
+				
+			}
 		}
 	],
 	"themeSupport": [

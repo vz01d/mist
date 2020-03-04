@@ -218,4 +218,14 @@ class MistTheme extends MistWrapper
 	{
 		return self::$isChildTheme;
 	}
+
+	/**
+	 * Config
+	 * 
+	 * @return \mist\MistConfig - the config object
+	 */
+	public function config(): \mist\MistConfig
+	{
+		return self::$config;
+	}
 }

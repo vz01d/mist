@@ -1,5 +1,6 @@
 ( function( window, document ) {
 	let app = {};
+	let xT;
 
 	// -> Server ?
 	const placeHolders= [
@@ -13,8 +14,12 @@
 		"V?",
 		"X?",
 		"???",
+		"DEC",
 		"220 550",
-		"OCT"
+		"+",
+		"OCT",
+		"-0 && -1",
+		"42 * Pi = V² / X³"
 	];
 	app.state = false; // toggled
 
