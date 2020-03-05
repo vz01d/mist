@@ -33,7 +33,7 @@ declare(strict_types=1);
 			<?php endif; ?>
 		</div>
 	</div>
-	<div class="border-t-2 border-solid border-skeeg-500 px-42">
+	<div class="border-t-2 border-solid border-skeeg-500 py-4">
 		<div class="container">
 			<div class="flex">
 				<div class="flex-1 align-center self-center">

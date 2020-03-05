@@ -1,7 +1,34 @@
 {
 	"mistGlobal": {
 		"excerpt_length": 200,
-		"excerpt_text": "READ ON ..."
+		"excerpt_text": "READ ON ...",
+		"wp": {
+			"image_sizes": {
+				"remove_defaults": false
+			}
+		}
+	},
+	"imageSizes": {
+		"mist-sm": {
+			"width": 640,
+			"height": 360
+		},
+		"mist-md": {
+			"width": 768,
+			"height": 432
+		},
+		"mist-lg": {
+			"width": 1024,
+			"height": 576
+		},
+		"mist-xl": {
+			"width": 1280,
+			"height": 720
+		},
+		"mist-xxl": {
+			"width": 1920,
+			"height": 1080
+		}
 	},
 	"postTypes": [
 		{
@@ -18,7 +45,8 @@
 	],
 	"themeSupport": [
 		"title-tag",
-		"align-wide"
+		"align-wide",
+		"post-thumbnails"
 	],
 	"navMenus": [
 		"main",

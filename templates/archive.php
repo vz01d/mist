@@ -1,4 +1,4 @@
-<article class="p-2 first:pt-0 mt-42 first:mt-0">
+<article class="border-b border-gray-300 py-42 first:pt-0 last:border-0">
 	<h2 class="
 		text-size-36
 		font-skeeg
@@ -6,10 +6,11 @@
 	>
 		<?php the_title(); ?>
 	</h2>
-	<span class="block text-skeeg-500 italic">
-		<?php the_date(); ?>
+	<span class="block text-skeeg-500 italic h-42 mb-2">
+		<?php echo get_the_date() . ' von ' . get_the_author(); ?>
 	</span>
-	<p>
+	<?php the_post_thumbnail(); ?>
+	<p class="mt-10">
 		<?php the_excerpt(); ?>
 	</p>
 </article>

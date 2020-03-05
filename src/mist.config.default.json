@@ -1,13 +1,40 @@
 {
 	"mistGlobal": {
 		"excerpt_length": 200,
-		"excerpt_text": "  READ ON ..."
+		"excerpt_text": "READ ON ...",
+		"wp": {
+			"image_sizes": {
+				"remove_defaults": true
+			}
+		}
+	},
+	"imageSizes": {
+		"mist-sm": {
+			"width": 640,
+			"height": 360
+		},
+		"mist-md": {
+			"width": 768,
+			"height": 432
+		},
+		"mist-lg": {
+			"width": 1024,
+			"height": 576
+		},
+		"mist-xl": {
+			"width": 1280,
+			"height": 720
+		},
+		"mist-xxl": {
+			"width": 1920,
+			"height": 1080
+		}
 	},
 	"postTypes": [
 		{
 			"post": {
 				"excerpt_length": 168,
-				"excerpt_text": " ___MEHR_LESEN:"
+				"excerpt_text": "___MEHR_LESEN:"
 			}
 		},
 		{
@@ -36,6 +63,8 @@
 			],
 			"wrapper_classes": [
 				"text-center",
+				"mt-42",
+				"first:mt-0",
 				"text-size-18"
 			]
 		},

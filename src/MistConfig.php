@@ -43,6 +43,11 @@ class MistConfig extends \mist\wrapper\MistTheme
 	 * Theme support
 	 */
 	private $themeSupport = [];
+	
+	/**
+	 * Image sizes
+	 */
+	private $imageSizes = [];
 
 	/**
 	 * Widget areas
@@ -55,6 +60,7 @@ class MistConfig extends \mist\wrapper\MistTheme
 	 */
 	private $configKeys = [
 		'mistGlobal',
+		'imageSizes',
 		'postTypes',
 		'themeSupport',
 		'navMenus',
@@ -160,6 +166,18 @@ class MistConfig extends \mist\wrapper\MistTheme
 	{
 		$this->widgetAreas = count($values) > 0 ? $values : []; 
 	}
+	
+	/**
+	 * Image Sizes from config
+	 * 
+	 * @param array $values
+	 * 
+	 * @return void
+	 */
+	private function imageSizes(array $values): void
+	{
+		$this->imageSizes = count($values) > 0 ? $values : []; 
+	}
 
 	/**
 	 * Set the text domain
@@ -229,6 +247,7 @@ class MistConfig extends \mist\wrapper\MistTheme
 	public function afterSetup(): void
 	{
 		// apply navigation menus
+		// TODO: sanitize this developer input make sure it's all right
 		$navMenus = apply_filters('mist_nav_menus', $this->navMenus);
 		register_nav_menus($navMenus);
 
@@ -236,6 +255,7 @@ class MistConfig extends \mist\wrapper\MistTheme
 		load_theme_textdomain($this->textDomain, $this->theme()->rootPath() . '/languages');
 
 		$this->addThemeSupport();
+		$this->addImageSizes();
 	}
 	
 	/**
@@ -245,6 +265,7 @@ class MistConfig extends \mist\wrapper\MistTheme
 	 */
 	public function initWidgets(): void
 	{
+		// TODO: sanitize this developer input make sure it's all right
 		$widgetAreas = apply_filters('mist_widget_areas', $this->widgetAreas);
 		array_map(function(array $item) {
 			if (false === isset($item['name'])) {
@@ -318,12 +339,38 @@ class MistConfig extends \mist\wrapper\MistTheme
 	}
 
 	/**
+	 * Add image sizes
+	 * 
+	 * @return void
+	 */
+	private function addImageSizes(): void
+	{
+		// TODO: sanitize this developer input make sure it's all right
+		$imageSizes = apply_filters('mist_image_sizes', $this->imageSizes);
+		if (count($imageSizes) > 0) {
+			foreach($imageSizes as $name => $params) {
+				$width = $params['width'] ?? 300;
+				$height = $params['height'] ?? 300;
+				add_image_size((string)$name, $width, $height);
+			}
+		}
+		
+		if (isset($this->globalConfig->wp['image_sizes']['remove_defaults']) &&
+			true === $this->globalConfig->wp['image_sizes']['remove_defaults'])
+		{
+			remove_image_size('1536x1536');
+			remove_image_size('2048x2048');
+		}
+	}
+
+	/**
 	 * Add the theme support configuration
 	 * 
 	 * @return void
 	 */
 	private function addThemeSupport(): void
 	{
+		// TODO: sanitize this developer input make sure it's all right
 		$themeSup = apply_filters('mist_theme_support', $this->themeSupport);
 		if (count($themeSup) > 0) {
 			foreach($themeSup as $themeSupport) {
