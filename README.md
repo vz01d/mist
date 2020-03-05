@@ -30,7 +30,7 @@ The framework leaves choices to you everywhere not getting in your way with some
 - [ ] add sticky header option
 - [ ] add svg sizes and default colors to mist config
 - [ ] add customizer settings via config
-- [ ] add schema.org (all of them) -> check this plugin to safe time https://de.wordpress.org/plugins/seo-by-rank-math/
+- [ ] add schema.org (all of them)~~ -> check this plugin to safe time https://de.wordpress.org/plugins/seo-by-rank-math/~~ (plugin code is crap)
 - [ ] add form creator (TBD)
 - [ ] add support for meta fields (acf replacement)
 - [ ] extended-cpts should be optional (this is sort of working already by using filter over config)
