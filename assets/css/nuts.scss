@@ -2,3 +2,8 @@
 	display: inline;
 	margin-left: 15px;
 }
+.m-rot90 {
+	position: absolute;
+	transform-origin: 0 0;
+	transform: rotate(42deg);
+}

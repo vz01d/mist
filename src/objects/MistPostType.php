@@ -140,7 +140,7 @@ class MistPostType extends MistPost
 		if ('' === $excerpt || $this->name !== get_post_type()) {
 			return $excerpt;
 		}
-		return substr($excerpt, 0, $this->excerptLength) . $this->excerptMoreText('');
+		return substr($excerpt, 0, $this->excerptLength) . ' ' . $this->excerptMoreText('');
 	}
 
 	/**9

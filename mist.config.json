@@ -1,13 +1,13 @@
 {
 	"mistGlobal": {
 		"excerpt_length": 200,
-		"excerpt_text": "  READ ON ..."
+		"excerpt_text": "READ ON ..."
 	},
 	"postTypes": [
 		{
 			"post": {
 				"excerpt_length": 168,
-				"excerpt_text": " ___MEHR_LESEN:"
+				"excerpt_text": "___MEHR_LESEN:"
 			}
 		},
 		{
@@ -36,6 +36,8 @@
 			],
 			"wrapper_classes": [
 				"text-center",
+				"mt-42",
+				"first:mt-0",
 				"text-size-18"
 			]
 		},

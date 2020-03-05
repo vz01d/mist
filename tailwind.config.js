@@ -20,6 +20,7 @@ module.exports = {
 		},
 		fontSize: {
 			'logo': '69px',
+			'size-84': '84px',
 			'size-42': '42px',
 			'size-36': '36px',
 			'size-30': '30px',
@@ -39,7 +40,8 @@ module.exports = {
 		}
 	},
 	variants: {
-		padding: [ 'responsive', 'first', 'last', 'focus' ]
+		padding: [ 'responsive', 'first', 'last', 'focus' ],
+		margin: [ 'responsive', 'first', 'last' ]
 	},
 	plugins: []
 };

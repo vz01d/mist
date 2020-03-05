@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
- * The theme's index.php file.
+ * The theme's 404.php file.
  *
  * @category   Theme Framework
  * @package    Mist
@@ -28,12 +28,7 @@ get_header();
 		"
 	>
 	<?php
-	if (have_posts()) {
-		while (have_posts()) {
-			the_post();
-			the_content();
-		}
-	}
+		get_template_part( 'templates/404' );
 	?>
 	</main>
 	<?php get_sidebar(); ?>	

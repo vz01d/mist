@@ -16,6 +16,7 @@ if (is_active_sidebar('mainside')) : ?>
 	<aside 
 		id="secondary"
 		class="
+			leading-normal
 			py-42
 			pl-42
 			sidebar

@@ -10,7 +10,7 @@ declare(strict_types=1);
  */
 ?>
 <footer
-	class="bg-skeeg-400 static bottom-0 clear-both text-white">
+	class="bg-skeeg-400 static bottom-0 clear-both text-white leading-normal">
 	<div class="container md:flex p-42">
 		<div class="w-full md:flex-1 text-center">
 			<?php if (is_active_sidebar('footer1')) : ?>

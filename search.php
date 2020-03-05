@@ -24,6 +24,7 @@ get_header();
 			lg:w-2/3
 			xl:w-3/5
 			text-size-18
+			leading-normal
 		"
 	>
 	<?php
