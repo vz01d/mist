@@ -69,7 +69,7 @@ class MistImage
 		$title = get_the_title($imageId);
 
 		if ($this->showCaption) {
-			$caption = get_the_excerpt($imageId);
+			$caption = wp_get_attachment_caption($imageId);
 		}
 
 		$out = "";

@@ -90,14 +90,9 @@ class MistPostType extends MistPost
 			$args,
 			array_keys($args)
 		);
-
-		// TODO: create custom loop for functions like get_post_type to be covered by framework
-		// TODO: if ! if ?
-		$post_type = get_post_type();
-		if ($this->name === $post_type && 'attachment' !== $post_type) {
-			add_filter('get_the_excerpt', [$this, 'excerptLength'], 999);
-			add_filter('excerpt_more', [$this, 'excerptMoreText']);
-		}
+		
+		add_filter('get_the_excerpt', [$this, 'excerptLength']);
+		add_filter('excerpt_more', [$this, 'excerptMoreText']);
 
 		// TODO: move metaboxes to generators
 		// TODO: -> abstract this
@@ -187,7 +182,10 @@ class MistPostType extends MistPost
      */
     public function excerptLength(string $excerpt): string
     {
-		if ('' === $excerpt) {
+		// TODO: create custom loop for functions like get_post_type to be covered by framework
+		// TODO: if ! if ?
+		$post_type = get_post_type();
+		if ('' === $excerpt || $this->name !== $post_type) {
 			return $excerpt;
 		}
 		return substr($excerpt, 0, $this->excerptLength) . ' ' . $this->excerptMoreText('');
