@@ -24,6 +24,39 @@ use mist\MistConfig;
  */
 class MistTheme extends MistWrapper
 {
+	
+	/**
+	 * Post type object container
+	 */
+	private $postTypes = [];
+	
+	/**
+	 * Nav menu object container
+	 */
+	protected $navMenus = [
+		'main'
+	];
+
+	/**
+	 * Theme text domain
+	 */
+	protected $textDomain = 'mist';
+	
+	/**
+	 * Theme support
+	 */
+	protected $themeSupport = [];
+	
+	/**
+	 * Image sizes
+	 */
+	protected $imageSizes = [];
+
+	/**
+	 * Widget areas
+	 */
+	protected $widgetAreas = [];
+
 	/**
 	 * Is child theme
 	 */
@@ -83,7 +116,7 @@ class MistTheme extends MistWrapper
 	 */
 	private function cleanUp(): void
 	{
-		// TODO: check for obsolete stuffs -> Roots -> Soil
+		// TODO: CONFIG & FILTER
 		remove_action('wp_head', 'wp_generator');
 		remove_action('wp_head', 'rsd_link');
 		remove_action('wp_head', 'wlwmanifest_link');
@@ -104,6 +137,7 @@ class MistTheme extends MistWrapper
 	 */
 	public function enqueueAssets(): void
 	{
+		// TODO: CONFIG and filter (!)
 		// google fonts
 		wp_enqueue_style('webfonts', self::$assetUri . '/css/fontface.css', false);
 		

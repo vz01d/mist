@@ -23,38 +23,6 @@ use mist\objects\MistPostType;
 class MistConfig extends \mist\wrapper\MistTheme
 {
 	/**
-	 * Post type object container
-	 */
-	private $postTypes = [];
-	
-	/**
-	 * Nav menu object container
-	 */
-	private $navMenus = [
-		'main'
-	];
-
-	/**
-	 * Theme text domain
-	 */
-	private $textDomain = 'mist';
-	
-	/**
-	 * Theme support
-	 */
-	private $themeSupport = [];
-	
-	/**
-	 * Image sizes
-	 */
-	private $imageSizes = [];
-
-	/**
-	 * Widget areas
-	 */
-	private $widgetAreas = [];
-
-	/**
 	 * Make sure we don't read wrong keys
 	 * and load them
 	 */
@@ -355,6 +323,7 @@ class MistConfig extends \mist\wrapper\MistTheme
 			}
 		}
 		
+		// remove default wp image sizes if desired
 		if (isset($this->globalConfig->wp['image_sizes']['remove_defaults']) &&
 			true === $this->globalConfig->wp['image_sizes']['remove_defaults'])
 		{

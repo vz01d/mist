@@ -14,3 +14,16 @@
 .moretag:hover {
 	color: #5276a5; 
 }
+
+.wp-block-image {
+	margin-top: 18px;
+	border: 1px solid #336699;
+	border-bottom: none;
+}
+
+.wp-block-image figcaption {
+	background: #336699;
+	color: #fff;
+	margin: 0;
+	padding: 6px;
+}

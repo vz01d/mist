@@ -4,6 +4,7 @@ main{display:block}
 h1{font-size:2em;margin:.67em 0}
 hr{-webkit-box-sizing:content-box;box-sizing:content-box;height:0;overflow:visible}
 a{background-color:transparent}
+small{font-size:80%}
 img{border-style:none}
 input{font-family:inherit;font-size:100%;line-height:1.15;margin:0}
 input{overflow:visible}
@@ -14,7 +15,7 @@ input{overflow:visible}
 [type="search"]::-webkit-search-decoration{-webkit-appearance:none}
 template{display:none}
 [hidden]{display:none}
-h1,h2,hr,p{margin:0}
+h1,h2,hr,figure,p{margin:0}
 html{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";line-height:1.5}
 *,::before,::after{-webkit-box-sizing:border-box;box-sizing:border-box;border-width:0;border-style:solid;border-color:#e2e8f0}
 hr{border-top-width:1px}
@@ -116,6 +117,8 @@ body *{-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margi
 .m-rot90{position:absolute;-webkit-transform-origin:0 0;transform-origin:0 0;-webkit-transform:rotate(42deg);transform:rotate(42deg)}
 .moretag{color:#369}
 .moretag:hover{color:#5276a5}
+.wp-block-image{margin-top:18px;border:1px solid #369;border-bottom:0}
+.wp-block-image figcaption{background:#369;color:#fff;margin:0;padding:6px}
 @media(min-width:640px){.container{max-width:640px}
 }@media(min-width:768px){.container{max-width:768px}
 .md\:block{display:block}

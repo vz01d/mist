@@ -91,9 +91,59 @@ class MistPostType extends MistPost
 			array_keys($args)
 		);
 
-        add_filter('get_the_excerpt', [$this, 'excerptLength'], 999);
-        add_filter('excerpt_more', [$this, 'excerptMoreText']);
+		// TODO: create custom loop for functions like get_post_type to be covered by framework
+		// TODO: if ! if ?
+		$post_type = get_post_type();
+		if ($this->name === $post_type && 'attachment' !== $post_type) {
+			add_filter('get_the_excerpt', [$this, 'excerptLength'], 999);
+			add_filter('excerpt_more', [$this, 'excerptMoreText']);
+		}
+
+		// TODO: move metaboxes to generators
+		// TODO: -> abstract this
+		// if (true === is_admin()) {
+		// 	if ('attachment' === $post_type) {
+		// 		add_action('add_meta_boxes', [$this, 'addCopyrightMeta']);
+		// 	}
+		// }
 	}
+
+	/**
+	 * Add the copyright meta field to attachments
+	 * 
+	 * @param string $post_type - the post type
+	 * 
+	 * @return void
+	 */
+	// public function addCopyrightMeta(string $post_type): void
+	// {
+	// 	add_meta_box(
+	// 		'mist_copyright',
+	// 		__( 'Copyright', $this->theme()->textDomain),
+	// 		[$this, 'renderCopyrightMeta'],
+	// 		$post_type,
+	// 		'advanced',
+	// 		'high'
+	// 	);
+	// }
+
+	/**
+	 * Render the copyright meta input field
+	 * 
+	 * @param $post - the post
+	 */
+	// public function renderCopyrightMeta($post)
+	// {
+	// 	wp_nonce_field('mist_theme_meta', 'mist_theme_meta_nonce');
+	// 	$value = get_post_meta($post->ID, 'mistCopyright', true);
+		
+	// 	$out .= '<label for="mist_copyright">';
+	// 	$out .= _e('Copyright', $this->theme()->textDomain);
+	// 	$out .= '</label>';
+	// 	$out .= '<input type="text" id="mist_copyright" name="mist_copyright" value="' . esc_attr($value) .' " size="25" />';
+		
+	// 	echo $out;
+	// }
 
 	/**
 	 * extract parameters and set them on the object
@@ -137,7 +187,7 @@ class MistPostType extends MistPost
      */
     public function excerptLength(string $excerpt): string
     {
-		if ('' === $excerpt || $this->name !== get_post_type()) {
+		if ('' === $excerpt) {
 			return $excerpt;
 		}
 		return substr($excerpt, 0, $this->excerptLength) . ' ' . $this->excerptMoreText('');

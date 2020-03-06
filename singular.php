@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
- * The theme's index.php file.
+ * The theme's singular.php file.
  *
  * @category   Theme Framework
  * @package    Mist
