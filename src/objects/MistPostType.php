@@ -42,12 +42,18 @@ class MistPostType extends MistPost
 	/**
 	 * Excerpt length
 	 */
-	public $excerptLength = 231;
+	private $excerptLength = 231;
 	
 	/**
 	 * Excerpt text
 	 */
-	public $excerptText = 'read more ...';
+	private $excerptText = 'read more ...';
+
+	/**
+	 * TEMP: move this to Attachment Post Type Object
+	 * $showCopyright
+	 */
+	private $showCopyright = false;
 
 	/**
 	 * Create new Posttype object
@@ -62,6 +68,10 @@ class MistPostType extends MistPost
 
 		if (true === isset($args['excerpt_text'])) {
 			$this->excerptText = $args['excerpt_text'];
+		}
+
+		if (true === isset($args['show_copyright'])) {
+			$this->showCopyright = $args['show_copyright'];
 		}
 	}
 	
@@ -94,51 +104,89 @@ class MistPostType extends MistPost
 		add_filter('get_the_excerpt', [$this, 'excerptLength']);
 		add_filter('excerpt_more', [$this, 'excerptMoreText']);
 
-		// TODO: move metaboxes to generators
-		// TODO: -> abstract this
-		// if (true === is_admin()) {
-		// 	if ('attachment' === $post_type) {
-		// 		add_action('add_meta_boxes', [$this, 'addCopyrightMeta']);
-		// 	}
-		// }
+		// show copyright meta if desired
+		// TODO: move this (!)
+		if (true === $this->showCopyright) {
+			$this->addAttachmentMeta();
+		}
 	}
 
 	/**
-	 * Add the copyright meta field to attachments
+	 * Add custom meta fields to attachments
+	 *
+	 * @return void
+	 */
+	private function addAttachmentMeta(): void
+	{
+		// TODO: abstract to MistPostTypeAttachment
+		// add filters and actions
+		add_filter('attachment_fields_to_edit', [$this, 'loadAttachmentMeta'], 10, 2);
+		add_action('wp_ajax_save-attachment-compat', [$this, 'ajaxSaveCompat'], 0, 1);
+		add_filter('attachment_fields_to_edit', [$this, 'saveAttachment'], 1);
+	}
+
+	/**
+	 * Load WPs attachment meta
 	 * 
-	 * @param string $post_type - the post type
+	 * @param array $fields - the current fields array
+	 * @param \WP_Post $post - the post we're working on
+	 * 
+	 * @return array - the modified fields
+	 */
+	public function loadAttachmentMeta($fields, \WP_Post $post): array
+	{
+		// TODO: abstract this
+		$copyrightUrl = get_post_meta($post->ID, 'mist_copyright_url', true);
+		$fields['mist_copyright_url'] = [
+				'label' =>  __('Copyright Url', $this->theme()->textDomain),
+				'input' => 'text',
+				'value' => $copyrightUrl,
+				'show_in_edit' => true,
+		];
+		
+		$copyrightText = get_post_meta($post->ID, 'mist_copyright_text', true);
+		$fields['mist_copyright_text'] = [
+				'label' =>  __('Copyright Info Text', $this->theme()->textDomain),
+				'input' => 'text',
+				'value' => $copyrightText,
+				'show_in_edit' => true,
+		];
+
+		return $fields;  
+	}
+
+	/**
+	 * Load WPs attachment meta
 	 * 
 	 * @return void
 	 */
-	// public function addCopyrightMeta(string $post_type): void
-	// {
-	// 	add_meta_box(
-	// 		'mist_copyright',
-	// 		__( 'Copyright', $this->theme()->textDomain),
-	// 		[$this, 'renderCopyrightMeta'],
-	// 		$post_type,
-	// 		'advanced',
-	// 		'high'
-	// 	);
-	// }
+	public function ajaxSaveCompat(): void
+	{
+		$post_id = intval($_POST['id']);
+		$copyrightUrl = sanitize_text_field($_POST['attachments'][$post_id]['mist_copyright_url']);
+		update_post_meta($post_id , 'mist_copyright_url', $copyrightUrl);
+		
+		$copyrightText = sanitize_text_field($_POST['attachments'][$post_id]['mist_copyright_text']);
+		update_post_meta($post_id , 'mist_copyright_text', $copyrightText);
+
+		clean_post_cache($post_id);
+	}
 
 	/**
-	 * Render the copyright meta input field
+	 * Load WPs attachment meta
 	 * 
-	 * @param $post - the post
+	 * @return bool
 	 */
-	// public function renderCopyrightMeta($post)
-	// {
-	// 	wp_nonce_field('mist_theme_meta', 'mist_theme_meta_nonce');
-	// 	$value = get_post_meta($post->ID, 'mistCopyright', true);
-		
-	// 	$out .= '<label for="mist_copyright">';
-	// 	$out .= _e('Copyright', $this->theme()->textDomain);
-	// 	$out .= '</label>';
-	// 	$out .= '<input type="text" id="mist_copyright" name="mist_copyright" value="' . esc_attr($value) .' " size="25" />';
-		
-	// 	echo $out;
-	// }
+	public function saveAttachment($post_id): bool
+	{
+		$copyrightUrl = isset($_POST['attachments'][$post_id]['mist_copyright_url']) ?? false;
+		$result = update_post_meta($post_id, 'mist_copyright_url', sanitize_text_field($copyrightUrl));
+
+		$copyrightText = isset($_POST['attachments'][$post_id]['mist_copyright_text']) ?? false;
+		$result = $result && update_post_meta($post_id, 'mist_copyright_text', sanitize_text_field($copyrightText));
+
+		return $result;
+	}
 
 	/**
 	 * extract parameters and set them on the object

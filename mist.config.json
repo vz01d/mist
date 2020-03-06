@@ -6,6 +6,9 @@
 			"image_sizes": {
 				"remove_defaults": false
 			}
+		},
+		"attachments": {
+			"show_copyright": true
 		}
 	},
 	"imageSizes": {

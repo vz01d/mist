@@ -188,7 +188,8 @@ class MistConfig extends \mist\wrapper\MistTheme
 		foreach($objects as $object) {
 			$pt = new MistPostType([
 				'excerpt_length' => $this->globalConfig->excerpt_length,
-				'excerpt_text' => $this->globalConfig->excerpt_text
+				'excerpt_text' => $this->globalConfig->excerpt_text,
+				'show_copyright' => $this->globalConfig->attachments['show_copyright'] // TODO: move this (!)
 			]);
 			$pt->setup($object);
 			$this->postTypes[] = $pt;

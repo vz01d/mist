@@ -24,11 +24,15 @@ use mist\MistConfig;
  */
 class MistTheme extends MistWrapper
 {
+	/**
+	 * Theme text domain
+	 */
+	public $textDomain = 'mist';
 	
 	/**
 	 * Post type object container
 	 */
-	private $postTypes = [];
+	protected $postTypes = [];
 	
 	/**
 	 * Nav menu object container
@@ -36,11 +40,6 @@ class MistTheme extends MistWrapper
 	protected $navMenus = [
 		'main'
 	];
-
-	/**
-	 * Theme text domain
-	 */
-	protected $textDomain = 'mist';
 	
 	/**
 	 * Theme support
