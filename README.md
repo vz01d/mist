@@ -27,6 +27,7 @@ The framework leaves choices to you everywhere not getting in your way with some
 - [x] load nav menus
 - [x] allow all configuration items to be created via code (sometimes config just does not fit)
 - [ ] move "theme" assets/enqueuing to theme (atm in framework)
+- [ ] add Mist css and js
 - [ ] add support for meta fields (acf replacement)
 - [ ] test theme in live env
 - [ ] eject Mist from theme as composer package to be used as framework hence anything inside ./src has to stay dependency-free at all times (except require-dev ofc) -> a few dependencies are always necessary (!)

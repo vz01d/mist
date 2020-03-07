@@ -50,10 +50,9 @@ class MistPostType extends MistPost
 	private $excerptText = 'read more ...';
 
 	/**
-	 * TEMP: move this to Attachment Post Type Object
 	 * $showCopyright
 	 */
-	private $showCopyright = false;
+	protected $showCopyright = false;
 
 	/**
 	 * Create new Posttype object

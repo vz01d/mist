@@ -22,7 +22,7 @@ try {
 
 	// run theme
 	$mist = mist\MistBase::app();
-	$mist->run();	
+	$mist->run();
 } catch (\Exception $e) {
 	throw new \Exception($e->getMessage());
 }

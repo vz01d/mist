@@ -26,7 +26,7 @@ use mist\objects\MistImage;
 	<span class="block text-skeeg-500 italic h-42 mb-2">
 		<?php echo get_the_date() . ' von ' . get_the_author(); ?>
 	</span>
-	<?php echo new MistImage(); ?>
+	<?php echo new MistImage(['showCopyright' => true]); ?>
 	<p class="mt-10">
 		<?php the_content(); ?>
 	</p>

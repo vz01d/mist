@@ -23,6 +23,11 @@ use mist\objects\MistPostType;
 class MistConfig extends \mist\wrapper\MistTheme
 {
 	/**
+	 * Global settings
+	 */
+	public $globalConfig;
+
+	/**
 	 * Make sure we don't read wrong keys
 	 * and load them
 	 */
@@ -52,11 +57,6 @@ class MistConfig extends \mist\wrapper\MistTheme
 		'title_classes' => ['widget-title'],
 		'title_tag' => 'span',
 	];
-
-	/**
-	 * Global settings
-	 */
-	private $globalConfig;
 
 	/**
 	 * Initialize the configiguration object

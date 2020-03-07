@@ -25,32 +25,32 @@ namespace mist\objects;
 class MistImage
 {
 	/**
-	 * Show image caption or not
+	 * Image parameters
 	 */
-	private $showCaption = true;
-	
-	/**
-	 * Show image caption or not
-	 */
-	private $size = '';
+	private $params = [
+		'showCaption' => true,
+		'size' => 'thumbnail',
+		'showCopyright' => false
+	];
 
 	/**
 	 * Create new image - image must be echo'd so magic will happen
 	 * 
-	 * @param bool $showCaption - show the image caption - default true
-	 * @param string $size - the image size name - default empty string
-	 * will fallback to largest (!) size
+	 * @param array $params - array of image params as below
+	 *  bool $showCaption - show the image caption - default true
+	 *  string $size - the image size name - default 'thumbnail'
+	 *  will fallback to largest (!) size
+	 *  bool showCopyright - wether to show the copyright info link and
+	 *  tooltip or not
 	 */
-	public function __construct(bool $showCaption = true, string $size = '')
+	public function __construct(array $params = [])
 	{
-		$this->showCaption = $showCaption;
-
+		// use biggest registered size of theme as default (!)
 		$sizes = get_intermediate_image_sizes();
-		if ('' === $size || false === in_array($size, $sizes)) {
-			$size = $sizes[count($sizes) - 1] ?? 'thumbnail';
-		}
+		$this->params['size'] = $sizes[count($sizes) - 1];
 
-		$this->size = $size;
+		// set params
+		$this->params = wp_parse_args($params, $this->params);
 	}
 
 	/**
@@ -61,21 +61,21 @@ class MistImage
 	public function __toString(): string
 	{
 		$imageId = get_post_thumbnail_id();
-		$src = wp_get_attachment_image_src($imageId, $this->size);
-		$srcSet = wp_get_attachment_image_srcset($imageId, $this->size);
-		$srcSetSizes = wp_get_attachment_image_sizes($imageId, $this->size);
+		$src = wp_get_attachment_image_src($imageId, $this->params['size']);
+		$srcSet = wp_get_attachment_image_srcset($imageId, $this->params['size']);
+		$srcSetSizes = wp_get_attachment_image_sizes($imageId, $this->params['size']);
 		$alt = get_post_meta($imageId, '_wp_attachment_image_alt', true);
 		$meta = wp_get_attachment_metadata($imageId);
 		$title = get_the_title($imageId);
 
-		if ($this->showCaption) {
+		if ($this->params['showCaption']) {
 			$caption = wp_get_attachment_caption($imageId);
 		}
 
 		$out = "";
 
-		if (false !== $this->showCaption && '' !== $caption) {
-			$out .= "<figure class='wp-caption'>";
+		if (false !== $this->params['showCaption'] && '' !== $caption) {
+			$out .= "<figure class='wp-block-image size-full'>";
 		}
 
 		$out .= "<img
@@ -87,8 +87,16 @@ class MistImage
 			alt='{$alt}'
 		/>";
 
-		if (false !== $this->showCaption && '' !== $caption) {
-			$out .= "<figcaption class='wp-caption-text'>{$caption}</figcaption>";
+		if (false !== $this->params['showCaption'] && '' !== $caption) {
+			$out .= "<figcaption class='wp-caption-text'>";
+			$out .= $caption;
+			
+			// copyright
+			if (true === $this->params['showCopyright']) {
+				$out .= "<span class='mist-copyright-info'>©️</span>";
+			}
+
+			$out .= "</figcaption>";
 			$out .= "</figure>";
 		}
 

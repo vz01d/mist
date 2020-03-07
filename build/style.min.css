@@ -118,7 +118,8 @@ body *{-webkit-margin-before:0;margin-block-start:0;-webkit-margin-after:0;margi
 .moretag{color:#369}
 .moretag:hover{color:#5276a5}
 .wp-block-image{margin-top:18px;border:1px solid #369;border-bottom:0}
-.wp-block-image figcaption{background:#369;color:#fff;margin:0;padding:6px}
+.wp-block-image figcaption{font-size:22px;background:#369;color:#fff;border-top:3px dashed #709fdd;margin:0;padding:6px}
+.mist-copyright-info{cursor:pointer;float:right}
 @media(min-width:640px){.container{max-width:640px}
 }@media(min-width:768px){.container{max-width:768px}
 .md\:block{display:block}

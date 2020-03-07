@@ -22,8 +22,16 @@
 }
 
 .wp-block-image figcaption {
+	font-size: 22px;
 	background: #336699;
 	color: #fff;
+	border-top: 3px dashed #709fdd;
 	margin: 0;
 	padding: 6px;
+}
+
+/* TEMP: move to mist */
+.mist-copyright-info {
+	cursor: pointer;
+	float: right;
 }
