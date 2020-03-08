@@ -1,11 +1,11 @@
 {
-  "name": "Mistify",
+  "name": "mistify",
   "description": "A Theme built on top of Mist Framework.",
   "version": "1.0.0",
   "author": "Sebo https://42geeks.gg",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ahmadawais/WPGulp"
+    "url": "https://github.com/sebot/mist"
   },
   "license": "MIT",
   "devDependencies": {

@@ -26,7 +26,7 @@ The framework leaves choices to you everywhere not getting in your way with some
 - [x] load theme support
 - [x] load nav menus
 - [x] allow all configuration items to be created via code (sometimes config just does not fit)
-- [ ] move "theme" assets/enqueuing to theme (atm in framework)
+- [x] move "theme" assets/enqueuing to theme (atm in framework)
 - [ ] add Mist css and js
 - [ ] add support for meta fields (acf replacement)
 - [ ] test theme in live env
