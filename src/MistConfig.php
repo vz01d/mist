@@ -33,6 +33,7 @@ class MistConfig extends \mist\wrapper\MistTheme
 	 */
 	private $configKeys = [
 		'mistGlobal',
+		'assets',
 		'imageSizes',
 		'postTypes',
 		'themeSupport',
@@ -108,6 +109,19 @@ class MistConfig extends \mist\wrapper\MistTheme
 				}
 			}
 		}
+	}
+
+	/**
+	 * Load assets config
+	 * 
+	 * @param array $values - assets config params
+	 * 
+	 * @return void
+	 */
+	private function assets(array $values): void
+	{
+		// cast back
+		$this->assets = (object)$values;
 	}
 
 	/**
@@ -206,6 +220,61 @@ class MistConfig extends \mist\wrapper\MistTheme
 	private function navMenus(array $objects = []): void
 	{
 		$this->navMenus = $objects;
+	}
+
+	/**
+	 * Enqueue all theme assets (styles & scripts)
+	 * as per config
+	 * 
+	 * TODO: abstract
+	 * 
+	 * @return void
+	 */
+	public function enqueueAssets(): void
+	{
+		// TODO: this bunch of code can be way more nicier
+		
+		/**
+		 * stlyes
+		 */
+		array_map(function($item) {
+			if (false === isset($item['handle']) || false === isset($item['path'])) {
+				return;
+			}
+
+			$path = (string)$item['path'];
+			$deps = isset($item['deps']) ? (array)$item['deps'] : [];
+			$version = isset($item['version']) ? (array)$item['version'] : false;
+			$media = isset($item['media']) ? (array)$item['media'] : 'all';
+			if (true === file_exists($this->rootPath() . $path)) {
+				wp_enqueue_style(
+					(string)$item['handle'],
+					$this->rootUri() . $path,
+					$version,
+					$media
+				);
+			}
+		}, $this->assets->styles);
+
+		array_map(function($item) {
+			if (false === isset($item['handle']) || false === isset($item['path'])) {
+				return;
+			}
+
+			$path = (string)$item['path'];
+			$deps = isset($item['deps']) ? (array)$item['deps'] : [];
+			$version = isset($item['version']) ? (array)$item['version'] : false;
+			$footer = isset($item['footer']) ? (array)$item['footer'] : true;
+			if (true === file_exists($this->rootPath() . $path)) {
+				wp_enqueue_script(
+					(string)$item['handle'],
+					$this->rootUri() . $path,
+					$deps,
+					$version,
+					$footer
+				);
+			}
+		}, $this->assets->scripts);
 	}
 
 	/**

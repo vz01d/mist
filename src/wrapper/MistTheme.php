@@ -57,6 +57,11 @@ class MistTheme extends MistWrapper
 	protected $widgetAreas = [];
 
 	/**
+	 * Assets
+	 */
+	protected $assets = [];
+
+	/**
 	 * Is child theme
 	 */
 	private static $isChildTheme = false;
@@ -136,16 +141,12 @@ class MistTheme extends MistWrapper
 	 */
 	public function enqueueAssets(): void
 	{
-		// TODO: CONFIG and filter (!)
-		// google fonts
-		wp_enqueue_style('webfonts', self::$assetUri . '/css/fontface.css', false);
+		self::$config->enqueueAssets();
 		
-		// TODO: TMP (!) MOVE THIS TO THE "THEME" INSTEAD, IT DOES NOT BELONG TO THE FRAMEWORK
-		wp_enqueue_style('theme', self::$themeUri . '/build/style.min.css', false);
-
-		wp_enqueue_script('theme', self::$assetUri . '/js/custom.min.js', []);
-
-		$this->dequeueAssets();
+		// dequeue jquery?
+		if (true !== self::$config->globalConfig->wp['enqueue_jquery']) {
+			$this->dequeueAssets();
+		}
 	}
 
 	/**

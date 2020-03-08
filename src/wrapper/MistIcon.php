@@ -70,7 +70,6 @@ class MistIcon extends MistWrapper
 			$rect = $doc->getChild(0);
 			$rect->setStyle('fill', $this->props['fill']);
 
-			header('Content-Type: image/svg+xml');
 			echo $img;
 		}
 	}

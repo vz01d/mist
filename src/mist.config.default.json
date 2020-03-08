@@ -4,9 +4,37 @@
 		"excerpt_text": "READ ON ...",
 		"wp": {
 			"image_sizes": {
-				"remove_defaults": true
-			}
+				"remove_defaults": false
+			},
+			"enqueue_jquery": true
+		},
+		"attachments": {
+			"show_copyright": true
 		}
+	},
+	"assets": {
+		"scripts": [
+			{
+				"handle": "mist-theme",
+				"path": "/assets/js/custom.min.js",
+				"deps": [],
+				"footer": true
+			}
+		],
+		"styles": [
+			{
+				"handle": "mist-theme",
+				"path": "/build/style.min.css",
+				"deps": [],
+				"media": "all"
+			},
+			{
+				"handle": "mist-theme-fonts",
+				"path": "/assets/css/fontface.css",
+				"deps": [],
+				"media": "all"
+			}
+		]
 	},
 	"imageSizes": {
 		"mist-sm": {
@@ -45,7 +73,8 @@
 	],
 	"themeSupport": [
 		"title-tag",
-		"align-wide"
+		"align-wide",
+		"post-thumbnails"
 	],
 	"navMenus": [
 		"main",

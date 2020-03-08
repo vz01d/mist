@@ -11,6 +11,30 @@
 			"show_copyright": true
 		}
 	},
+	"assets": {
+		"scripts": [
+			{
+				"handle": "mist-theme",
+				"path": "/assets/js/custom.min.js",
+				"deps": [],
+				"footer": true
+			}
+		],
+		"styles": [
+			{
+				"handle": "mist-theme",
+				"path": "/build/style.min.css",
+				"deps": [],
+				"media": "all"
+			},
+			{
+				"handle": "mist-theme-fonts",
+				"path": "/assets/css/fontface.css",
+				"deps": [],
+				"media": "all"
+			}
+		]
+	},
 	"imageSizes": {
 		"mist-sm": {
 			"width": 640,

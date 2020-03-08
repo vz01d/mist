@@ -4,6 +4,7 @@ main{display:block}
 h1{font-size:2em;margin:.67em 0}
 hr{-webkit-box-sizing:content-box;box-sizing:content-box;height:0;overflow:visible}
 a{background-color:transparent}
+code{font-family:monospace,monospace;font-size:1em}
 small{font-size:80%}
 img{border-style:none}
 input{font-family:inherit;font-size:100%;line-height:1.15;margin:0}
@@ -28,6 +29,7 @@ input::placeholder{color:#a0aec0}
 h1,h2{font-size:inherit;font-weight:inherit}
 a{color:inherit;text-decoration:inherit}
 input{padding:0;line-height:inherit;color:inherit}
+code{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
 img,svg,object{display:block;vertical-align:middle}
 img{max-width:100%;height:auto}
 .container{width:100%;margin-right:auto;margin-left:auto;padding-right:42px;padding-left:42px}
