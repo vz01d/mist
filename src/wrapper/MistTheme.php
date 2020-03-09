@@ -65,7 +65,7 @@ class MistTheme extends MistWrapper
 	 * Is child theme
 	 */
 	private static $isChildTheme = false;
-
+	
 	/**
 	 * Theme URI
 	 */
@@ -111,8 +111,48 @@ class MistTheme extends MistWrapper
 		self::$assetPath = self::$themePath . '/assets';
 
 		add_action('wp_enqueue_scripts', [$this, 'enqueueAssets']);
+		add_action('wp_body_open', [$this, 'bodyOpen']);
+	}
+
+	/**
+	 * Hook wp_body_open 10
+	 * 
+	 * @return string - additional content after <body>
+	 */
+	public function bodyOpen(): void
+	{
+		// TODO: templates?
+		$out = '';
+		$out .= $this->addModal();
+
+		echo $out;
 	}
 	
+	/**
+	 * Returns html for mist modal
+	 * 
+	 * @return string - the modal html
+	 */
+	private function addModal(): string
+	{
+		$m = '';
+		$m .= '<div id="mistmodal" class="modal">';
+			$m .= '<div class="modal-content">';
+				$m .= '<div class="modal-head">';
+					$m .= '<button class="float-right modal-close" aria-label="Close">';
+					$m .= '<svg width="24" height="24" viewBox="0 0 24 24">';
+					$m .= '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>';
+					$m .= '</svg>';
+					$m .= '</button>';
+				$m .= '</div>';
+				$m .= '<div class="modal-body">';
+				$m .= '</div>';
+			$m .= '</div>';
+		$m .= '</div>';
+
+		return $m;
+	}
+
 	/**
 	 * Clean up default wp stuff
 	 *
@@ -222,7 +262,7 @@ class MistTheme extends MistWrapper
 	{
 		return self::$themeUri;
 	}
-	
+		
 	/**
 	 * Theme asset uri
 	 *

@@ -10,6 +10,7 @@
 		"Hast Du eine Frage?",
 		"Was bedeutet 42?",
 		"Gibt es einen Vierten Aggregatzustand?",
+		"Wasser ist ein Medium",
 		"Pi * X² * V / (Pi * 3 / 9) * ((42³ / 3600) + ((42/100) + 3))?",
 		"V?",
 		"X?",

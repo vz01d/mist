@@ -93,7 +93,7 @@ class MistImage
 			
 			// copyright
 			if (true === $this->params['showCopyright']) {
-				$out .= "<span class='mist-copyright-info'>©️</span>";
+				$out .= "<a href='#mistmodal' class='mist-copyright-info'>©️</a>";
 			}
 
 			$out .= "</figcaption>";

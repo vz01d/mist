@@ -233,7 +233,13 @@ class MistConfig extends \mist\wrapper\MistTheme
 	public function enqueueAssets(): void
 	{
 		// TODO: this bunch of code can be way more nicier
-		
+		// TODO: OOP
+
+		// framework scripts
+		// TODO: change to vendor folder
+		wp_enqueue_script('mist-overlay', $this->rootUri() . '/src/scripts/mist-overlay.js', []);
+		wp_enqueue_style('mist-overlay', $this->rootUri() . '/src/styles/mist-overlay.css', []);
+
 		/**
 		 * stlyes
 		 */
