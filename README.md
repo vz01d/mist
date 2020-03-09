@@ -1,3 +1,5 @@
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sebot/mist/PHP%20Composer?style=for-the-badge) ![GitHub repo size](https://img.shields.io/github/repo-size/sebot/mist?style=for-the-badge) ![GitHub License](https://img.shields.io/github/license/sebot/mist?style=for-the-badge) ![Languages](https://img.shields.io/github/languages/count/sebot/mist?style=for-the-badge) ![Last Commit](https://img.shields.io/github/last-commit/sebot/mist?style=for-the-badge) ![Releases](https://img.shields.io/github/v/release/sebot/mist?include_prereleases&style=for-the-badge) ![Downloads](https://img.shields.io/github/downloads/sebot/mist/total?style=for-the-badge) ![Discord](https://img.shields.io/discord/517358401529839626?style=for-the-badge)
+
 # Mist
 
 *WARNING DO NOT USE THIS IN PRODUCTION YET UNLESS YOU'RE 200% SURE ABOUT WHAT YOU'RE DOING! YOU'VE BEEN WARNED!*
