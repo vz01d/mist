@@ -33,7 +33,7 @@ The framework leaves choices to you everywhere not getting in your way with some
 - [ ] add support for meta fields (acf replacement)
 - [ ] test theme in live env
 - [ ] eject Mist from theme as composer package to be used as framework hence anything inside ./src has to stay dependency-free at all times (except require-dev ofc) -> a few dependencies are always necessary (!)
-- [ ] add schema.org (all of them)~~ -> check this plugin to safe time https://de.wordpress.org/plugins/seo-by-rank-math/~~ (plugin code is crap)
+- [ ] add schema.org (all of them) ~~check this plugin to safe time https://de.wordpress.org/plugins/seo-by-rank-math/ _~~ (plugin code is crap)
 - [ ] add svg sizes and default colors to mist config
 - [ ] add customizer settings via config
 - [ ] add form creator (TBD)
