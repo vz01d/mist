@@ -57,6 +57,7 @@ img{max-width:100%;height:auto}
 .flex-1{-webkit-box-flex:1;-ms-flex:1 1 0;flex:1 1 0}
 .float-right{float:right}
 .float-left{float:left}
+.clearfix:after{content:"";display:table;clear:both}
 .clear-both{clear:both}
 .font-skeeg{font-family:'Luckiest Guy',display}
 .font-bold{font-weight:700}

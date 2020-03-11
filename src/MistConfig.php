@@ -237,7 +237,7 @@ class MistConfig extends \mist\wrapper\MistTheme
 
 		// framework scripts
 		// TODO: change to vendor folder
-		wp_enqueue_script('mist-overlay', $this->rootUri() . '/src/scripts/mist-overlay.js', []);
+		wp_register_script('mist-overlay', $this->rootUri() . '/src/scripts/mist-overlay.js', []);
 		wp_enqueue_style('mist-overlay', $this->rootUri() . '/src/styles/mist-overlay.css', []);
 
 		/**

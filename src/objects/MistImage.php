@@ -94,6 +94,21 @@ class MistImage
 			// copyright
 			if (true === $this->params['showCopyright']) {
 				$out .= "<a href='#mistmodal' class='mist-copyright-info'>©️</a>";
+
+				$copyrightText = get_post_meta($imageId, 'mist_copyright_text', true);
+				$copyrightUrl = get_post_meta($imageId, 'mist_copyright_url', true);
+
+				// pass data to client
+				wp_localize_script(
+					'mist-overlay',
+					'MISTIMG',
+					[
+						'copyrightText' => $copyrightText,
+						'copyrightUrl' => $copyrightUrl
+					]
+				);
+
+				wp_enqueue_script('mist-overlay');
 			}
 
 			$out .= "</figcaption>";

@@ -1,6 +1,33 @@
 .modal {
 	display: none;
+	position: absolute;
 }
 .modal.open {
 	display: block;
 }
+.modal-content {
+	background: #fff;
+	box-shadow: 1px 1px 5px #999;
+}
+.modal-head {
+	padding: 10px 24px;
+}
+.modal-head {
+	border-bottom: 1px solid #e2e2e2;
+}
+.modal-body {
+	padding: 24px;
+}
+.modal-body a {
+	display: inline-block;
+	margin-top: 15px;
+	background: #369;
+	padding: 9px 25px;
+	color: #fff;
+	font-weight: bold;
+}
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+  }
