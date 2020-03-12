@@ -47,7 +47,7 @@ class MistBlock
 	 * adding mist copyright info if activated in theme config
 	 * 
 	 * @param $attributes - the attributes of the block
-	 * @param 
+	 * @param $content - the content of the block
 	 * 
 	 * @return string - the image html rendered
 	 */
