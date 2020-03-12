@@ -58,6 +58,8 @@ class MistWrapper
 	public function initTheme(): void
 	{
 		self::$post = new wrapper\MistPost();
+		$mb = new wrapper\MistBlock();
+		$mb->initBlocks();
 		self::$theme->init();
 	}
 

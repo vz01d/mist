@@ -4,16 +4,19 @@
 		let targets = document.querySelectorAll( '.mist-copyright-info' );
 		targets.forEach( function( t ) {
 			t.addEventListener( 'click', function( e ) {
-				let rect = t.getBoundingClientRect();
+				let rect = e.target.getBoundingClientRect();
 				const target = this.getAttribute( 'href' ).substr( 1 );
 				const modalWindow = document.getElementById( target );
 				if ( modalWindow.classList ) {
 					modalWindow.classList.add( 'open' );
 				}
 
-				modalWindow.style.top = rect.top - 42 + 'px';
-				modalWindow.style.left = rect.left + 'px';
+				// TODO: scroll height?!?
 
+				modalWindow.style.top = rect.x + 'px';
+				modalWindow.style.left = rect.y + 'px';
+
+				/*
 				modalWindow.querySelector( '.modal-body' ).innerHTML =
 					'<p>' +
 					MISTIMG.copyrightText +
@@ -21,6 +24,7 @@
 					'<a href="' + MISTIMG.copyrightUrl + '" target="_blank">' +
 					'Bildquelle</a>'
 				;
+				*/
 
 				e.preventDefault();
 			});

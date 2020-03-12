@@ -28,6 +28,7 @@ class MistImage
 	 * Image parameters
 	 */
 	private $params = [
+		'id' => null,
 		'showCaption' => true,
 		'size' => 'thumbnail',
 		'showCopyright' => false
@@ -54,13 +55,13 @@ class MistImage
 	}
 
 	/**
-	 * Magic __toString
+	 * Render the image
 	 * 
-	 * outputs the image loaded :)
+	 * @return string - the image string
 	 */
-	public function __toString(): string
+	public function render(): string
 	{
-		$imageId = get_post_thumbnail_id();
+		$imageId = $this->params['id'] ?? get_post_thumbnail_id();
 		$src = wp_get_attachment_image_src($imageId, $this->params['size']);
 		$srcSet = wp_get_attachment_image_srcset($imageId, $this->params['size']);
 		$srcSetSizes = wp_get_attachment_image_sizes($imageId, $this->params['size']);
@@ -88,26 +89,18 @@ class MistImage
 		/>";
 
 		if (false !== $this->params['showCaption'] && '' !== $caption) {
-			$out .= "<figcaption class='wp-caption-text'>";
+			// copyright
+			// ??? -> @giggles: can we please safe these permanent postmeta hits somehow?
+			$copyrightText = esc_html(get_post_meta($imageId, 'mist_copyright_text', true));
+			$copyrightUrl = esc_html(get_post_meta($imageId, 'mist_copyright_url', true));
+			$out .= "<figcaption class='wp-caption-text' data-cptext='{$copyrightText}' data-cpurl='{$copyrightUrl}'>";
 			$out .= $caption;
 			
-			// copyright
 			if (true === $this->params['showCopyright']) {
 				$out .= "<a href='#mistmodal' class='mist-copyright-info'>©️</a>";
 
-				$copyrightText = get_post_meta($imageId, 'mist_copyright_text', true);
-				$copyrightUrl = get_post_meta($imageId, 'mist_copyright_url', true);
-
-				// pass data to client
-				wp_localize_script(
-					'mist-overlay',
-					'MISTIMG',
-					[
-						'copyrightText' => $copyrightText,
-						'copyrightUrl' => $copyrightUrl
-					]
-				);
-
+				// pass data to client if required
+				wp_localize_script('mist-overlay', 'MISTIMG', []);
 				wp_enqueue_script('mist-overlay');
 			}
 
@@ -116,5 +109,15 @@ class MistImage
 		}
 
 		return $out;
+	}
+
+	/**
+	 * Magic __toString
+	 * 
+	 * outputs the image loaded :)
+	 */
+	public function __toString(): string
+	{
+		return $this->render();
 	}
 }
