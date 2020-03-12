@@ -17,11 +17,12 @@ if (is_active_sidebar('mainside')) : ?>
 		id="secondary"
 		class="
 			leading-normal
-			py-42
-			pl-42
 			sidebar
 			widget-area
 			w-full
+			pb-42
+			lg:py-42
+			lg:pl-42
 			lg:float-right
 			lg:w-1/3
 			xl:w-2/5
