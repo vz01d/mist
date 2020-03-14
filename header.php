@@ -13,6 +13,7 @@ if (!defined('ABSPATH')) {
 }
 
 use mist\wrapper\MistIcon;
+use mist\objects\MistBreadcrumb;
 
 ?>
 <!DOCTYPE html>
@@ -91,3 +92,6 @@ use mist\wrapper\MistIcon;
 		</div>
 	</div>
 </header>
+<div class="container">
+	<?php MistBreadcrumb::render(); ?>
+</div>

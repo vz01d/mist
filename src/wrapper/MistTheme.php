@@ -12,6 +12,7 @@ namespace mist\wrapper;
 
 use mist\MistWrapper;
 use mist\MistConfig;
+use mist\objects\MistBreadcrumb;
 
 /**
  * MistTheme - Wrap wp theme related functions and hooks like
@@ -207,6 +208,10 @@ class MistTheme extends MistWrapper
 	public function init(): void
 	{
 		$this->cleanUp();
+
+		// TODO -> config
+		$breadcrumbConf = self::$config->globalConfig->breadcrumbs ?? [];
+		new MistBreadcrumb($breadcrumbConf);
 
 		// developers need to use MistPostType to add their post types using code/filter
 		$postTypes = apply_filters('mist_post_types', self::$config->registeredPosttypes());

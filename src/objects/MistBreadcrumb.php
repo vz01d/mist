@@ -1,117 +1,170 @@
 <?php
+declare(strict_types=1);
+/**
+ * Mist
+ *
+ * @category Theme Framework
+ * @package  Mist
+ * @author   Sebo <sebo@42geeks.gg>
+ * @license  GPLv3 https://opensource.org/licenses/gpl-3.0.php
+ */
+namespace mist\objects;
 
+use mist\MistConfig;
 
-class 
-/*=============================================
-                BREADCRUMBS
-=============================================*/
-//  to include in functions.php
-function the_breadcrumb()
+/**
+ * MistBreadcrumb - display breadcrumbs in your theme
+ * original source for breadcrumb via SO: https://gist.githubusercontent.com/techpulsetoday/c7f8fa1a5f170f4ecbb049b63d0cd140/raw/2dd52a19e786390fd6016478ff201b5e6c4ae818/breadcrumbs-code-without-plugin.php
+ * this is a heavily modified OOP version of above gist
+ * which incorporates some Mist related functions for config loading etc.
+ *
+ * @category Theme Framework
+ * @package  Mist
+ * @author   Sebo <sebo@42geeks.gg>
+ * @license  GPLv3 https://opensource.org/licenses/gpl-3.0.php
+ */
+class MistBreadcrumb
 {
-    $showOnHome = 0; // 1 - show breadcrumbs on the homepage, 0 - don't show
-    $delimiter = '&raquo;'; // delimiter between crumbs
-    $home = 'Home'; // text for the 'Home' link
-    $showCurrent = 1; // 1 - show current post/page title in breadcrumbs, 0 - don't show
-    $before = '<span class="current">'; // tag before the current crumb
-    $after = '</span>'; // tag after the current crumb
+	/**
+	 * Default configuration for Breadcrumb
+	 */
+	private static $defaultConfig = [
+		'showOnHome' => false,
+		'delimiter' => '&#187;',
+		'homelabel' => 'Home',
+		'highlight' => true,
+		'before' => '<span class="current">',
+		'after' => '</span>',
+	];
+	
+	/**
+	 * Load object
+	 * 
+	 * @param array $config - the configuration array
+	 */
+	public function __construct(array $config)
+	{
+		self::$defaultConfig = wp_parse_args($config, $defaultConfig);
+	}
 
-    global $post;
-    $homeLink = get_bloginfo('url');
-    if (is_home() || is_front_page()) {
-        if ($showOnHome == 1) {
-            echo '<div id="crumbs"><a href="' . $homeLink . '">' . $home . '</a></div>';
-        }
-    } else {
-        echo '<div id="crumbs"><a href="' . $homeLink . '">' . $home . '</a> ' . $delimiter . ' ';
-        if (is_category()) {
-            $thisCat = get_category(get_query_var('cat'), false);
-            if ($thisCat->parent != 0) {
-                echo get_category_parents($thisCat->parent, true, ' ' . $delimiter . ' ');
-            }
-            echo $before . 'Archive by category "' . single_cat_title('', false) . '"' . $after;
-        } elseif (is_search()) {
-            echo $before . 'Search results for "' . get_search_query() . '"' . $after;
-        } elseif (is_day()) {
-            echo '<a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $delimiter . ' ';
-            echo '<a href="' . get_month_link(get_the_time('Y'), get_the_time('m')) . '">' . get_the_time('F') . '</a> ' . $delimiter . ' ';
-            echo $before . get_the_time('d') . $after;
-        } elseif (is_month()) {
-            echo '<a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $delimiter . ' ';
-            echo $before . get_the_time('F') . $after;
-        } elseif (is_year()) {
-            echo $before . get_the_time('Y') . $after;
-        } elseif (is_single() && !is_attachment()) {
-            if (get_post_type() != 'post') {
-                $post_type = get_post_type_object(get_post_type());
-                $slug = $post_type->rewrite;
-                echo '<a href="' . $homeLink . '/' . $slug['slug'] . '/">' . $post_type->labels->singular_name . '</a>';
-                if ($showCurrent == 1) {
-                    echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
-                }
-            } else {
-                $cat = get_the_category();
-                $cat = $cat[0];
-                $cats = get_category_parents($cat, true, ' ' . $delimiter . ' ');
-                if ($showCurrent == 0) {
-                    $cats = preg_replace("#^(.+)\s$delimiter\s$#", "$1", $cats);
-                }
-                echo $cats;
-                if ($showCurrent == 1) {
-                    echo $before . get_the_title() . $after;
-                }
-            }
-        } elseif (!is_single() && !is_page() && get_post_type() != 'post' && !is_404()) {
-            $post_type = get_post_type_object(get_post_type());
-            echo $before . $post_type->labels->singular_name . $after;
-        } elseif (is_attachment()) {
-            $parent = get_post($post->post_parent);
-            $cat = get_the_category($parent->ID);
-            $cat = $cat[0];
-            echo get_category_parents($cat, true, ' ' . $delimiter . ' ');
-            echo '<a href="' . get_permalink($parent) . '">' . $parent->post_title . '</a>';
-            if ($showCurrent == 1) {
-                echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
-            }
-        } elseif (is_page() && !$post->post_parent) {
-            if ($showCurrent == 1) {
-                echo $before . get_the_title() . $after;
-            }
-        } elseif (is_page() && $post->post_parent) {
-            $parent_id  = $post->post_parent;
-            $breadcrumbs = array();
-            while ($parent_id) {
-                $page = get_page($parent_id);
-                $breadcrumbs[] = '<a href="' . get_permalink($page->ID) . '">' . get_the_title($page->ID) . '</a>';
-                $parent_id  = $page->post_parent;
-            }
-            $breadcrumbs = array_reverse($breadcrumbs);
-            for ($i = 0; $i < count($breadcrumbs); $i++) {
-                echo $breadcrumbs[$i];
-                if ($i != count($breadcrumbs)-1) {
-                    echo ' ' . $delimiter . ' ';
-                }
-            }
-            if ($showCurrent == 1) {
-                echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
-            }
-        } elseif (is_tag()) {
-            echo $before . 'Posts tagged "' . single_tag_title('', false) . '"' . $after;
-        } elseif (is_author()) {
-            global $author;
-            $userdata = get_userdata($author);
-            echo $before . 'Articles posted by ' . $userdata->display_name . $after;
-        } elseif (is_404()) {
-            echo $before . 'Error 404' . $after;
-        }
-        if (get_query_var('paged')) {
-            if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author()) {
-                echo ' (';
-            }
-            echo __('Page') . ' ' . get_query_var('paged');
-            if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author()) {
-                echo ')';
-            }
-        }
-        echo '</div>';
-    }
-} // end the_breadcrumb()
+	/**
+	 * Render the breadcrumb
+	 * 
+	 * @param bool $echo - wether to render the breadcrumb or output it
+	 * 
+	 * @return string - the rendered breadcrumb html
+	 */
+	public static function render(bool $echo = true): string
+	{
+		$c = self::$defaultConfig;
+		$out = '';
+		$homeLink = get_bloginfo('url');
+
+		// TODO: this is a bit to much of a function
+		// break up into smaller logical units
+		if (is_home() || is_front_page()) {
+			if (true === $c['showOnHome']) {
+				$out .= '<div id="bc"><a href="' . $homeLink . '">' . $c['homelabel'] . '</a></div>';
+			}
+		} else {
+			$pt = get_post_type();
+			$out .= '<div><a href="' . $homeLink . '">' . $c['homelabel'] . '</a> ' . $c['delimiter'] . ' ';
+			if (is_category()) {
+				$currentCat = get_category(get_query_var('cat'), false);
+				if ($currentCat->parent != 0) {
+					$out .=  get_category_parents($currentCat->parent, true, ' ' . $c['delimiter'] . ' ');
+				}
+				$out .=  $c['before'] . 'Archive by category "' . single_cat_title('', false) . '"' . $c['after'];
+			} elseif (is_search()) {
+				$out .=  $c['before'] . 'Search results for "' . get_search_query() . '"' . $c['after'];
+			} elseif (is_day()) {
+				$out .=  '<a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $c['delimiter'] . ' ';
+				$out .=  '<a href="' . get_month_link(get_the_time('Y'), get_the_time('m')) . '">' . get_the_time('F') . '</a> ' . $c['delimiter'] . ' ';
+				$out .=  $c['before'] . get_the_time('d') . $c['after'];
+			} elseif (is_month()) {
+				$out .=  '<a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $c['delimiter'] . ' ';
+				$out .=  $c['before'] . get_the_time('F') . $c['after'];
+			} elseif (is_year()) {
+				$out .=  $c['before'] . get_the_time('Y') . $c['after'];
+			} elseif (is_single() && !is_attachment()) {
+				if ('post' !== $pt) {
+					$post_type = get_post_type_object($pt);
+					$slug = $post_type->rewrite;
+					$out .=  '<a href="' . $homeLink . '/' . $slug['slug'] . '/">' . $post_type->labels->singular_name . '</a>';
+					if (true === $c['highlight']) {
+						$out .=  ' ' . $c['delimiter'] . ' ' . $c['before'] . get_the_title() . $c['after'];
+					}
+				} else {
+					$cat = get_the_category();
+					$cat = $cat[0];
+					$cats = get_category_parents($cat, true, ' ' . $c['delimiter'] . ' ');
+					if (false === $c['highlight']) {
+						$cats = preg_replace("#^(.+)\s" . $c['delimiter'] . "\s$#", "$1", $cats);
+					}
+					$out .=  $cats;
+					if (true === $c['highlight']) {
+						$out .=  $c['before'] . get_the_title() . $c['after'];
+					}
+				}
+			} elseif (!is_single() && !is_page() && $pt != 'post' && !is_404()) {
+				$post_type = get_post_type_object($pt);
+				$out .=  $c['before'] . $post_type->labels->singular_name . $c['after'];
+			} elseif (is_attachment()) {
+				$parent = get_post($post->post_parent);
+				$cat = get_the_category($parent->ID);
+				$cat = $cat[0];
+				$out .=  get_category_parents($cat, true, ' ' . $c['delimiter'] . ' ');
+				$out .=  '<a href="' . get_permalink($parent) . '">' . $parent->post_title . '</a>';
+				if ($c['highlight'] == 1) {
+					$out .=  ' ' . $c['delimiter'] . ' ' . $c['before'] . get_the_title() . $c['after'];
+				}
+			} elseif (is_page() && !$post->post_parent) {
+				if ($c['highlight'] == 1) {
+					$out .=  $c['before'] . get_the_title() . $c['after'];
+				}
+			} elseif (is_page() && $post->post_parent) {
+				$parent_id  = $post->post_parent;
+				$breadcrumbs = array();
+				while ($parent_id) {
+					$page = get_page($parent_id);
+					$breadcrumbs[] = '<a href="' . get_permalink($page->ID) . '">' . get_the_title($page->ID) . '</a>';
+					$parent_id  = $page->post_parent;
+				}
+				$breadcrumbs = array_reverse($breadcrumbs);
+				for ($i = 0; $i < count($breadcrumbs); $i++) {
+					$out .=  $breadcrumbs[$i];
+					if ($i != count($breadcrumbs)-1) {
+						$out .=  ' ' . $c['delimiter'] . ' ';
+					}
+				}
+				if ($c['highlight'] == 1) {
+					$out .=  ' ' . $c['delimiter'] . ' ' . $c['before'] . get_the_title() . $c['after'];
+				}
+			} elseif (is_tag()) {
+				$out .=  $c['before'] . 'Posts tagged "' . single_tag_title('', false) . '"' . $c['after'];
+			} elseif (is_author()) {
+				global $author;
+				$userdata = get_userdata($author);
+				$out .=  $c['before'] . 'Articles posted by ' . $userdata->display_name . $c['after'];
+			} elseif (is_404()) {
+				$out .=  $c['before'] . 'Error 404' . $c['after'];
+			}
+			if (get_query_var('paged')) {
+				if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author()) {
+					$out .=  ' (';
+				}
+				$out .=  __('Page') . ' ' . get_query_var('paged');
+				if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author()) {
+					$out .=  ')';
+				}
+			}
+			$out .=  '</div>';
+		}
+
+		if (true === $echo) {
+			echo $out;
+		}
+
+		return $out;
+	}
+}

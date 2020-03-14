@@ -9,6 +9,12 @@
 		},
 		"attachments": {
 			"show_copyright": true
+		},
+		"breadcrumbs": {
+			"showOnHome": false,
+			"delimiter": "&#187;",
+			"homelabel": "Home",
+			"highlight": true
 		}
 	},
 	"assets": {

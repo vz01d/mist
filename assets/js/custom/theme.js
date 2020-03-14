@@ -20,7 +20,8 @@
 		"+",
 		"OCT",
 		"-0 && -1",
-		"42 * Pi = V² / X³"
+		"42 * Pi = V² / X³",
+		"with great power comes great responsibility Mr. T",
 	];
 	app.state = false; // toggled
 
