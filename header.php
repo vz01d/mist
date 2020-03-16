@@ -93,5 +93,5 @@ use mist\objects\MistBreadcrumb;
 	</div>
 </header>
 <div class="container">
-	<?php MistBreadcrumb::render(); ?>
+	<?php echo MistBreadcrumb::render(); ?>
 </div>
