@@ -49,12 +49,10 @@ class MistBreadcrumb
 
 	/**
 	 * Render the breadcrumb
-	 * 
-	 * @param bool $echo - wether to render the breadcrumb or output it
-	 * 
+	 *
 	 * @return string - the rendered breadcrumb html
 	 */
-	public static function render(bool $echo = true): string
+	public static function render(): string
 	{
 		$c = self::$defaultConfig;
 		$out = '';
@@ -64,11 +62,11 @@ class MistBreadcrumb
 		// break up into smaller logical units
 		if (is_home() || is_front_page()) {
 			if (true === $c['showOnHome']) {
-				$out .= '<div id="bc"><a href="' . $homeLink . '">' . $c['homelabel'] . '</a></div>';
+				$out .= '<div id="mist-breadcrumb"><a href="' . $homeLink . '">' . $c['homelabel'] . '</a></div>';
 			}
 		} else {
 			$pt = get_post_type();
-			$out .= '<div><a href="' . $homeLink . '">' . $c['homelabel'] . '</a> ' . $c['delimiter'] . ' ';
+			$out .= '<div id="mist-breadcrumb"><a href="' . $homeLink . '">' . $c['homelabel'] . '</a> ' . $c['delimiter'] . ' ';
 			if (is_category()) {
 				$currentCat = get_category(get_query_var('cat'), false);
 				if ($currentCat->parent != 0) {
@@ -115,11 +113,11 @@ class MistBreadcrumb
 				$cat = $cat[0];
 				$out .=  get_category_parents($cat, true, ' ' . $c['delimiter'] . ' ');
 				$out .=  '<a href="' . get_permalink($parent) . '">' . $parent->post_title . '</a>';
-				if ($c['highlight'] == 1) {
+				if (true === $c['highlight']) {
 					$out .=  ' ' . $c['delimiter'] . ' ' . $c['before'] . get_the_title() . $c['after'];
 				}
 			} elseif (is_page() && !$post->post_parent) {
-				if ($c['highlight'] == 1) {
+				if (true === $c['highlight']) {
 					$out .=  $c['before'] . get_the_title() . $c['after'];
 				}
 			} elseif (is_page() && $post->post_parent) {
@@ -137,7 +135,7 @@ class MistBreadcrumb
 						$out .=  ' ' . $c['delimiter'] . ' ';
 					}
 				}
-				if ($c['highlight'] == 1) {
+				if (true === $c['highlight']) {
 					$out .=  ' ' . $c['delimiter'] . ' ' . $c['before'] . get_the_title() . $c['after'];
 				}
 			} elseif (is_tag()) {
@@ -149,20 +147,17 @@ class MistBreadcrumb
 			} elseif (is_404()) {
 				$out .=  $c['before'] . 'Error 404' . $c['after'];
 			}
+
 			if (get_query_var('paged')) {
 				if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author()) {
 					$out .=  ' (';
 				}
-				$out .=  __('Page') . ' ' . get_query_var('paged');
+				$out .=  __('Page') . ' ' . absint(get_query_var('paged'));
 				if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author()) {
 					$out .=  ')';
 				}
 			}
 			$out .=  '</div>';
-		}
-
-		if (true === $echo) {
-			echo $out;
 		}
 
 		return $out;

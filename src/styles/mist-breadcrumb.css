@@ -1,0 +1,8 @@
+div#mist-breadcrumb {
+	padding: 10px;
+	color: #336699;
+}
+
+div#mist-breadcrumb a {
+	font-weight: bold;
+}

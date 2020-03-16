@@ -100,7 +100,7 @@ class MistImage
 				$out .= "<a href='#mistmodal' class='mist-copyright-info'>©️</a>";
 
 				// pass data to client if required
-				wp_localize_script('mist-overlay', 'MISTIMG', []);
+				// wp_localize_script('mist-overlay', 'MISTIMG', []);
 				wp_enqueue_script('mist-overlay');
 			}
 
