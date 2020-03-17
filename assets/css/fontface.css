@@ -10,4 +10,5 @@
 		 url('../fonts/luckiest-guy-v10-latin-regular.woff') format('woff'), /* Modern Browsers */
 		 url('../fonts/luckiest-guy-v10-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
 		 url('../fonts/luckiest-guy-v10-latin-regular.svg#LuckiestGuy') format('svg'); /* Legacy iOS */
+	font-display: swap;
 }  

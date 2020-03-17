@@ -238,9 +238,9 @@ class MistConfig extends \mist\wrapper\MistTheme
 		// framework scripts
 		// TODO: change to vendor folder on eject
 		// TODO: this does not belong here
-		wp_register_script('mist-overlay', $this->rootUri() . '/src/scripts/mist-overlay.js', []);
-		wp_enqueue_style('mist-overlay', $this->rootUri() . '/src/styles/mist-overlay.css', []);
-		wp_enqueue_style('mist-breadcrumb', $this->rootUri() . '/src/styles/mist-breadcrumb.css', []);
+		wp_register_script('mist-overlay', $this->rootUri() . '/src/scripts/mist-overlay.js', [], false);
+		wp_enqueue_style('mist-overlay', $this->rootUri() . '/src/styles/mist-overlay.css', [], false);
+		wp_enqueue_style('mist-breadcrumb', $this->rootUri() . '/src/styles/mist-breadcrumb.css', [], false);
 
 		/**
 		 * stlyes
