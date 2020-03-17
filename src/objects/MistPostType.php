@@ -205,13 +205,13 @@ class MistPostType extends MistPost
 	/**
      * Change excerpt read more text
      *
-     * @param string $more - the 6current more tag
+     * @param string $more - the current more tag
      *
      * @return string - the new more tag
      */
     public function excerptMoreText(string $more): string
     {
-        $postId = get_queried_object_id();
+        $postId = get_the_ID();
         return '<a class="moretag inline-block" href="' .
                get_permalink($postId) .
                '">' .
