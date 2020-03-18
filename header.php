@@ -28,7 +28,7 @@ use mist\objects\MistBreadcrumb;
 <body itemtype="https://schema.org/WebPage" itemscope="itemscope" <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <header
-	class="p-42 py-4 md:py-42 bg-skeeg-400 md:flex"
+	class="py-4 md:py-42 bg-skeeg-400 md:flex"
 	id="masthead"
 	itemtype="https://schema.org/WPHeader"
 	itemscope="itemscope"
@@ -42,7 +42,16 @@ use mist\objects\MistBreadcrumb;
 		lg:w-1/3
 	">
 		<!-- TODO: h1 only if is_home() -->
-		<h1 class="my-0 font-skeeg uppercase text-logo text-white leading-none text-left">
+		<h1 class="
+			my-0
+			font-skeeg
+			uppercase
+			text-size-42
+			md:text-logo
+			md:leading-none
+			text-white
+			text-left
+		">
 			<?php 
 				$siteName = get_bloginfo('name');
 				$out = $siteName;

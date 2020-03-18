@@ -18,9 +18,10 @@ get_header();
 	<main
 		class="
 			leading-normal
-			py-42
+			pt-42
 			pr-42
 			w-full
+			md:py-42
 			lg:float-left
 			lg:w-2/3
 			xl:w-3/5

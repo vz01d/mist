@@ -27,7 +27,8 @@ module.exports = {
 			'size-30': '30px',
 			'size-24': '24px',
 			'size-22': '22px',
-			'size-18': '18px'
+			'size-18': '18px',
+			'size-16': '16px'
 		},
 		container: {
 			center: true,

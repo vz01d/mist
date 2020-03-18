@@ -18,7 +18,9 @@ $title = get_the_title();
 ?>
 <article class="border-b border-gray-300 py-42 first:pt-0 last:border-0">
 	<h2 class="
-		text-size-36
+		text-size-24
+		md:text-size-30
+		lg:text-size-36
 		font-skeeg
 		text-skeeg-400"
 	>
