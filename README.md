@@ -2,14 +2,15 @@
 
 # Mist
 
-*WARNING DO NOT USE THIS IN PRODUCTION YET UNLESS YOU'RE 200% SURE ABOUT WHAT YOU'RE DOING! YOU'VE BEEN WARNED!*
-> this note will be removed once it's safe to use mist, for now make sure you've enough understanding of OOP and WP and if you do you're more than welcome to help get this baby rolling! :-)
-
 Mist is a Framework for building WordPress Themes - it's to be used by developers
 who want to built custom Themes for WordPress with ease using an OOP API in both
 frontend and backend.
 
 The Framework can be used in any WordPress Theme including child themes, simply install it using composer as per installation notes below and start using the classes in your Theme to customize it with ease!
+
+## Installation
+
+The framework source is not available as composer package right now (sooooonish) - however you're more than safe to use everything inside /src to take a look. For production use make sure you have a good understanding of php and WordPress.
 
 ## Why a Framework on top of a Framework (WordPress)?
 
@@ -29,9 +30,9 @@ The framework leaves choices to you everywhere not getting in your way with some
 - [x] load nav menus
 - [x] allow all configuration items to be created via code (sometimes config just does not fit)
 - [x] move "theme" assets/enqueuing to theme (atm in framework)
-- [ ] add Mist css and js
+- [x] add Mist css and js
+- [x] test theme in live env
 - [ ] add support for meta fields (acf replacement)
-- [ ] test theme in live env
 - [ ] eject Mist from theme as composer package to be used as framework hence anything inside ./src has to stay dependency-free at all times (except require-dev ofc) -> a few dependencies are always necessary (!)
 - [ ] add schema.org (all of them) ~~check this plugin to safe time https://de.wordpress.org/plugins/seo-by-rank-math/ _~~ (plugin code is crap)
 - [ ] add svg sizes and default colors to mist config
