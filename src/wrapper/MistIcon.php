@@ -43,23 +43,31 @@ class MistIcon extends MistWrapper
 	 * 
 	 * @param string $iconName - the icon name
 	 * @param string $props - the icon properties
+	 * @param string $render - render the icon or not
 	 */
-	public function __construct(string $iconName, array $props = [])
+	public function __construct(string $iconName, array $props = [], bool $render = true)
 	{
 		$this->iconName = $iconName;
 		$this->props = wp_parse_args($props, $this->props);
 
-		return $this->render();
+		if (true === $render){
+			return $this->render();
+		}
 	}
 
 	/**
 	 * Render icon if exists
 	 * else return icon name as alt string
 	 * 
+	 * @param bool $echo - wether to echo the icon or not
+	 * 
+	 * TODO: naming is somewhat crap
+	 * 
 	 * @return string - the icon svg or name
 	 */
-	private function render()
+	public function render(bool $echo = true)
 	{
+		$img = '';
 		$iconPath = $this->theme()->assetPath() . '/icons/' . $this->iconName . '.svg';
 		if (true === file_exists($iconPath)) {
 			$svg = file_get_contents($iconPath);
@@ -70,7 +78,12 @@ class MistIcon extends MistWrapper
 			$rect = $doc->getChild(0);
 			$rect->setStyle('fill', $this->props['fill']);
 
-			echo $img;
 		}
+		
+		if (true !== $echo) {
+			return $svg;
+		}
+
+		echo $img;
 	}
 }

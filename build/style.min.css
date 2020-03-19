@@ -7,9 +7,9 @@ a{background-color:transparent}
 code{font-family:monospace,monospace;font-size:1em}
 small{font-size:80%}
 img{border-style:none}
-button,input{font-family:inherit;font-size:100%;line-height:1.15;margin:0}
+button,input,select{font-family:inherit;font-size:100%;line-height:1.15;margin:0}
 button,input{overflow:visible}
-button{text-transform:none}
+button,select{text-transform:none}
 button,[type="button"],[type="reset"]{-webkit-appearance:button}
 button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner{border-style:none;padding:0}
 button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring{outline:1px dotted ButtonText}
@@ -32,7 +32,7 @@ input::placeholder{color:#a0aec0}
 button,[role="button"]{cursor:pointer}
 h1,h2{font-size:inherit;font-weight:inherit}
 a{color:inherit;text-decoration:inherit}
-button,input{padding:0;line-height:inherit;color:inherit}
+button,input,select{padding:0;line-height:inherit;color:inherit}
 code{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
 img,svg,object{display:block;vertical-align:middle}
 img{max-width:100%;height:auto}

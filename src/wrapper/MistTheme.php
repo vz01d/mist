@@ -13,6 +13,7 @@ namespace mist\wrapper;
 use mist\MistWrapper;
 use mist\MistConfig;
 use mist\objects\MistBreadcrumb;
+use mist\widgets;
 
 /**
  * MistTheme - Wrap wp theme related functions and hooks like
@@ -113,6 +114,12 @@ class MistTheme extends MistWrapper
 
 		add_action('wp_enqueue_scripts', [$this, 'enqueueAssets']);
 		add_action('wp_body_open', [$this, 'bodyOpen']);
+
+		// TODO: abstraction layer
+		add_action('widgets_init', function() {
+			$iconWidget = new widgets\MistIconWidget($this);
+			register_widget($iconWidget);
+		});
 	}
 
 	/**
@@ -286,6 +293,29 @@ class MistTheme extends MistWrapper
 	public function assetPath(): string
 	{
 		return self::$assetPath;
+	}
+
+	/**
+	 * Return all theme icons from assets/icons
+	 * 
+	 * TODO: -> config -> svg path's to add multiple folders containing
+	 * svg's ? input welcome
+	 * 
+	 * @return array - the icons as array (containing path and filename)
+	 */
+	public function themeIcons(): array
+	{
+		$icons = [];
+		$iconPath = $this->assetPath() . '/icons/';
+		foreach(glob($iconPath . '*.svg') as $icon) {
+			$iconFile = $icon;
+			$iconName = str_replace([$iconPath, '.svg'], '', $icon);
+			$icons[] = [
+				'name' => $iconName,
+				'path' => $iconFile,
+			];
+		}
+		return $icons;
 	}
 
 	/**
