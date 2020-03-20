@@ -62,11 +62,11 @@ class MistBreadcrumb
 		// break up into smaller logical units
 		if (is_home() || is_front_page()) {
 			if (true === $c['showOnHome']) {
-				$out .= '<div id="mist-breadcrumb"><a href="' . $homeLink . '">' . $c['homelabel'] . '</a></div>';
+				$out .= '<div id="mist-breadcrumb" style="padding:10px 0px;color:#336699;"><a style="font-weight:bold;" href="' . $homeLink . '">' . $c['homelabel'] . '</a></div>';
 			}
 		} else {
 			$pt = get_post_type();
-			$out .= '<div id="mist-breadcrumb"><a href="' . $homeLink . '">' . $c['homelabel'] . '</a> ' . $c['delimiter'] . ' ';
+			$out .= '<div id="mist-breadcrumb" style="padding:10px 0px;color:#336699;"><a style="font-weight:bold;" href="' . $homeLink . '">' . $c['homelabel'] . '</a> ' . $c['delimiter'] . ' ';
 			if (is_category()) {
 				$currentCat = get_category(get_query_var('cat'), false);
 				if ($currentCat->parent != 0) {
@@ -76,11 +76,11 @@ class MistBreadcrumb
 			} elseif (is_search()) {
 				$out .=  $c['before'] . 'Search results for "' . get_search_query() . '"' . $c['after'];
 			} elseif (is_day()) {
-				$out .=  '<a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $c['delimiter'] . ' ';
-				$out .=  '<a href="' . get_month_link(get_the_time('Y'), get_the_time('m')) . '">' . get_the_time('F') . '</a> ' . $c['delimiter'] . ' ';
+				$out .=  '<a style="font-weight:bold;" href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $c['delimiter'] . ' ';
+				$out .=  '<a style="font-weight:bold;" href="' . get_month_link(get_the_time('Y'), get_the_time('m')) . '">' . get_the_time('F') . '</a> ' . $c['delimiter'] . ' ';
 				$out .=  $c['before'] . get_the_time('d') . $c['after'];
 			} elseif (is_month()) {
-				$out .=  '<a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $c['delimiter'] . ' ';
+				$out .=  '<a style="font-weight:bold;" href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $c['delimiter'] . ' ';
 				$out .=  $c['before'] . get_the_time('F') . $c['after'];
 			} elseif (is_year()) {
 				$out .=  $c['before'] . get_the_time('Y') . $c['after'];
@@ -88,7 +88,7 @@ class MistBreadcrumb
 				if ('post' !== $pt) {
 					$post_type = get_post_type_object($pt);
 					$slug = $post_type->rewrite;
-					$out .=  '<a href="' . $homeLink . '/' . $slug['slug'] . '/">' . $post_type->labels->singular_name . '</a>';
+					$out .=  '<a style="font-weight:bold;" href="' . $homeLink . '/' . $slug['slug'] . '/">' . $post_type->labels->singular_name . '</a>';
 					if (true === $c['highlight']) {
 						$out .=  ' ' . $c['delimiter'] . ' ' . $c['before'] . get_the_title() . $c['after'];
 					}
@@ -112,7 +112,7 @@ class MistBreadcrumb
 				$cat = get_the_category($parent->ID);
 				$cat = $cat[0];
 				$out .=  get_category_parents($cat, true, ' ' . $c['delimiter'] . ' ');
-				$out .=  '<a href="' . get_permalink($parent) . '">' . $parent->post_title . '</a>';
+				$out .=  '<a style="font-weight:bold;" href="' . get_permalink($parent) . '">' . $parent->post_title . '</a>';
 				if (true === $c['highlight']) {
 					$out .=  ' ' . $c['delimiter'] . ' ' . $c['before'] . get_the_title() . $c['after'];
 				}
@@ -125,7 +125,7 @@ class MistBreadcrumb
 				$breadcrumbs = array();
 				while ($parent_id) {
 					$page = get_page($parent_id);
-					$breadcrumbs[] = '<a href="' . get_permalink($page->ID) . '">' . get_the_title($page->ID) . '</a>';
+					$breadcrumbs[] = '<a style="font-weight:bold;" href="' . get_permalink($page->ID) . '">' . get_the_title($page->ID) . '</a>';
 					$parent_id  = $page->post_parent;
 				}
 				$breadcrumbs = array_reverse($breadcrumbs);

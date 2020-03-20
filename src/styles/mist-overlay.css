@@ -30,4 +30,9 @@
 	content: "";
 	clear: both;
 	display: table;
-  }
+}
+
+.mist-copyright-info {
+	cursor: pointer;
+	float: right;
+}

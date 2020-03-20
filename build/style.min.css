@@ -122,7 +122,12 @@ img{max-width:100%;height:auto}
 .moretag:hover{color:#5276a5}
 .wp-block-image{margin-top:18px;border:1px solid #369;border-bottom:0}
 .wp-block-image figcaption{font-size:22px;background:#369;color:#fff;border-top:3px dashed #709fdd;margin:0;padding:6px}
-.mist-copyright-info{cursor:pointer;float:right}
+h1,h2,h3,h4,h5,h6{font-family:'Luckiest Guy';font-style:normal;font-weight:400;color:#369;padding:9px 0}
+h2{font-size:36px}
+h3{font-size:30px}
+h4{font-size:24px}
+h5{font-size:20px}
+h6{font-size:18px}
 @media(min-width:640px){.container{max-width:640px}
 }@media(min-width:768px){.container{max-width:768px}
 .md\:block{display:block}

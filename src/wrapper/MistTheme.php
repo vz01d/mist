@@ -114,6 +114,7 @@ class MistTheme extends MistWrapper
 
 		add_action('wp_enqueue_scripts', [$this, 'enqueueAssets']);
 		add_action('wp_body_open', [$this, 'bodyOpen']);
+		add_action('upload_mimes', [$this, 'allowedMimes']);
 
 		// TODO: abstraction layer
 		add_action('widgets_init', function() {
@@ -195,6 +196,19 @@ class MistTheme extends MistWrapper
 		if (true !== self::$config->globalConfig->wp['enqueue_jquery']) {
 			$this->dequeueAssets();
 		}
+	}
+	
+	/**
+	 * Set allowed mimes
+	 * 
+	 * @return array
+	 */
+	public function allowedMimes(array $mimes): array
+	{
+		// TODO: this is not good right now (!)
+		$themeMimes = self::$config->getAllowedMimes();
+		$mimes = array_merge($themeMimes, $mimes);
+		return $mimes;
 	}
 
 	/**

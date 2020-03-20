@@ -65,7 +65,7 @@ class MistIcon extends MistWrapper
 	 * 
 	 * @return string - the icon svg or name
 	 */
-	public function render(bool $echo = true)
+	public function render()
 	{
 		$img = '';
 		$iconPath = $this->theme()->assetPath() . '/icons/' . $this->iconName . '.svg';
@@ -80,10 +80,6 @@ class MistIcon extends MistWrapper
 
 		}
 		
-		if (true !== $echo) {
-			return $svg;
-		}
-
 		echo $img;
 	}
 }

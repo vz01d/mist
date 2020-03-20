@@ -223,6 +223,22 @@ class MistConfig extends \mist\wrapper\MistTheme
 	}
 
 	/**
+	 * Get all allowed mimes
+	 * 
+	 * @return array - the mimetypes registered
+	 */
+	public function getAllowedMimes(): array
+	{
+		// TODO: SHORTCUT FOR NOW
+		$map = [
+			'svg' => 'image/svg+xml',
+			'webp' => 'image/webp'
+		];
+		$mimes = $this->globalConfig->attachments->allowed_mimes;
+		return $map;
+	}
+
+	/**
 	 * Enqueue all theme assets (styles & scripts)
 	 * as per config
 	 * 
@@ -240,7 +256,7 @@ class MistConfig extends \mist\wrapper\MistTheme
 		// TODO: this does not belong here
 		wp_register_script('mist-overlay', $this->rootUri() . '/src/scripts/mist-overlay.js', [], false);
 		wp_enqueue_style('mist-overlay', $this->rootUri() . '/src/styles/mist-overlay.css', [], false);
-		wp_enqueue_style('mist-breadcrumb', $this->rootUri() . '/src/styles/mist-breadcrumb.css', [], false);
+		// wp_enqueue_style('mist-breadcrumb', $this->rootUri() . '/src/styles/mist-breadcrumb.css', [], false);
 
 		/**
 		 * stlyes

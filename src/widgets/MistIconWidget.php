@@ -70,6 +70,7 @@ class MistIconWidget extends \WP_Widget
 		$icons = self::$theme->themeIcons();
 
 		// TODO: abstraction layer -> form -> generators
+		/*
 		$out .= '<select class="mist-select">';
 			foreach($icons as $icon) {
 				// add options
@@ -85,18 +86,14 @@ class MistIconWidget extends \WP_Widget
 					);
 
 					$out .= '<option value="' . $icon['name'] . '">';
-						$out .= $i->render(false);
+						ob_start();
+						$i->render(false);
+						$out .= ob_get_contents();
 					$out .= '</option>';
 				}
 			}
 		$out .= '</select>';
-
-		// $out .= '<input
-		// 	class="widefat"
-		// 	id="' . esc_attr($this->get_field_id('icon')) .
-		// 	'" name="' . esc_attr($this->get_field_name('icon')) .
-		// 	'" type="text"
-		// 	value="' . esc_attr($icon) . '">';
+*/
 		$out .= '</p>';
 
 		echo $out;

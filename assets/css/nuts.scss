@@ -30,8 +30,30 @@
 	padding: 6px;
 }
 
-/* TEMP: move to mist */
-.mist-copyright-info {
-	cursor: pointer;
-	float: right;
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Luckiest Guy';
+	font-style: normal;
+	font-weight: 400;
+	color: #336699;
+	padding: 9px 0px;
+}
+
+h2 {
+	font-size: 36px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+h4 {
+	font-size: 24px;
+}
+
+h5 {
+	font-size: 20px;
+}
+
+h6 {
+	font-size: 18px;
 }
