@@ -41,7 +41,7 @@ declare(strict_types=1);
 				</div>
 				<div class="flex-1 text-right">
 					<?php 
-						// TODO: custom walker
+						// TODO: custom walker -> not needed with WP 5.4 -> use meta
 						echo wp_nav_menu(
 							[
 								'menu' => 'footer',
