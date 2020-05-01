@@ -72,22 +72,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/meyfa/php-svg.git",
-                "reference": "668a9d4f1c4c5fa45328f44ad8146d675cfe94d1"
+                "reference": "b72a174dbed867642e4b2ac37eb1ebf6705c4b04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/meyfa/php-svg/zipball/668a9d4f1c4c5fa45328f44ad8146d675cfe94d1",
-                "reference": "668a9d4f1c4c5fa45328f44ad8146d675cfe94d1",
+                "url": "https://api.github.com/repos/meyfa/php-svg/zipball/b72a174dbed867642e4b2ac37eb1ebf6705c4b04",
+                "reference": "b72a174dbed867642e4b2ac37eb1ebf6705c4b04",
                 "shasum": ""
             },
             "require": {
-                "ext-gd": "*",
-                "ext-simplexml": "*",
                 "php": ">=5.3.3"
             },
             "require-dev": {
                 "meyfa/phpunit-assert-gd": "^1.1",
                 "phpunit/phpunit": "^4.8"
+            },
+            "suggest": {
+                "ext-gd": "Needed to rasterize images",
+                "ext-simplexml": "Needed to read SVG strings and files"
             },
             "type": "library",
             "autoload": {
@@ -110,7 +112,7 @@
             "keywords": [
                 "svg"
             ],
-            "time": "2019-10-17T07:57:03+00:00"
+            "time": "2020-03-12T21:59:16+00:00"
         }
     ],
     "packages-dev": [],
@@ -123,5 +125,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
